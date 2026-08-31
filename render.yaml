@@ -1,24 +1,48 @@
-# Render.com blueprint. Import the repo and Render reads this automatically.
-# Set CSRF_SECRET, SMTP_USER and SMTP_PASS in the dashboard — they are secrets.
+# Render blueprint. Import the repo at https://render.com and Render reads this
+# file automatically — see DEPLOY.md for the full walkthrough.
+#
+# Values marked `sync: false` are secrets or per-deploy settings: Render will
+# prompt you for them on first deploy instead of storing them in this file.
 services:
   - type: web
     name: swacchokhan
     runtime: node
     plan: free
+
+    # Closest Render region to Bangladesh — the site's main audience.
+    region: singapore
+
+    # Plain `npm install`, NOT `npm ci --ignore-scripts`: the postinstall step
+    # vendors three.js into public/vendor/, which is git-ignored.
     buildCommand: npm install
     startCommand: npm start
+
     healthCheckPath: /api/health
+    autoDeploy: true
+
     envVars:
       - key: NODE_ENV
         value: production
+
+      # Render terminates TLS at one proxy in front of the app.
       - key: TRUST_PROXY_HOPS
         value: "1"
+
+      # Generated once by Render and kept stable across deploys.
       - key: CSRF_SECRET
         generateValue: true
-      - key: CONTACT_TO
-        value: khanswaccho@gmail.com
+
+      # Your canonical domain, no trailing slash — e.g. https://swacchokhan.com
+      # Set this once the custom domain is attached, or canonical URLs and the
+      # sitemap will point at the .onrender.com subdomain.
       - key: SITE_ORIGIN
         sync: false
+
+      # ── Contact form ──────────────────────────────────────────────────────
+      # Render's disk is ephemeral, so the local-file fallback loses messages
+      # on every restart. SMTP is effectively required in production.
+      - key: CONTACT_TO
+        value: khanswaccho@gmail.com
       - key: SMTP_HOST
         value: smtp.gmail.com
       - key: SMTP_PORT
@@ -27,5 +51,7 @@ services:
         sync: false
       - key: SMTP_PASS
         sync: false
+
+      # Optional: a no-scope token raises the GitHub API limit 60/hr → 5000/hr.
       - key: GITHUB_TOKEN
         sync: false
