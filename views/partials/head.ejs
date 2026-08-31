@@ -1,0 +1,159 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#06070e">
+
+<title><%= title %></title>
+<meta name="description" content="<%= description %>">
+<meta name="author" content="<%= profile.identity.name %>">
+<meta name="keywords" content="<%= profile.seo.keywords %>">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="<%= canonical %>">
+
+<!-- Geographic targeting — Bangladesh -->
+<meta name="geo.region" content="<%= profile.identity.regionCode %>">
+<meta name="geo.placename" content="<%= profile.identity.locality %>, <%= profile.identity.country %>">
+<meta name="geo.position" content="<%= profile.identity.geo.lat %>;<%= profile.identity.geo.lon %>">
+<meta name="ICBM" content="<%= profile.identity.geo.lat %>, <%= profile.identity.geo.lon %>">
+<link rel="alternate" hreflang="en-bd" href="<%= canonical %>">
+<link rel="alternate" hreflang="x-default" href="<%= canonical %>">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="<%= profile.seo.siteName %>">
+<meta property="og:title" content="<%= title %>">
+<meta property="og:description" content="<%= description %>">
+<meta property="og:url" content="<%= canonical %>">
+<meta property="og:image" content="<%= origin %>/img/og.jpg">
+<meta property="og:image:alt" content="<%= profile.identity.name %> — <%= profile.identity.headline %>">
+<meta property="og:locale" content="<%= profile.seo.locale %>">
+<meta property="og:locale:alternate" content="bn_BD">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= title %>">
+<meta name="twitter:description" content="<%= description %>">
+<meta name="twitter:image" content="<%= origin %>/img/og.jpg">
+
+<!-- CSRF: read by public/js/contact.js for the fetch header -->
+<meta name="csrf-token" content="<%= csrfToken %>">
+<meta name="csrf-header" content="<%= csrfHeader %>">
+
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+>
+
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" href="/css/chat.css">
+
+<script type="application/ld+json" nonce="<%= cspNonce %>">
+<%- JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': origin + '/#person',
+      name: profile.identity.name,
+      alternateName: profile.identity.legalName,
+      jobTitle: profile.identity.headline,
+      description: profile.identity.shortBio,
+      email: 'mailto:' + profile.identity.email,
+      url: origin + '/',
+      image: origin + '/img/swaccho.jpg',
+      nationality: { '@type': 'Country', name: profile.identity.country },
+      homeLocation: {
+        '@type': 'Place',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: profile.identity.locality,
+          addressRegion: profile.identity.region,
+          addressCountry: profile.identity.countryCode
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: profile.identity.geo.lat,
+          longitude: profile.identity.geo.lon
+        }
+      },
+      knowsLanguage: profile.identity.languages,
+      knowsAbout: [
+        'Artificial Intelligence', 'Machine Learning', 'Python',
+        'Web Development', 'JavaScript', 'Search Engine Optimization',
+        'Digital Marketing', 'Cybersecurity'
+      ],
+      alumniOf: [
+        {
+          '@type': 'CollegeOrUniversity',
+          name: 'UCSI University — Bangladesh campus',
+          address: { '@type': 'PostalAddress', addressCountry: 'BD' }
+        },
+        {
+          '@type': 'CollegeOrUniversity',
+          name: 'SEGi University, Kota Damansara',
+          address: { '@type': 'PostalAddress', addressCountry: 'MY' }
+        },
+        {
+          '@type': 'EducationalOrganization',
+          name: "Jewel's Oxford International School and College",
+          address: { '@type': 'PostalAddress', addressCountry: 'BD' }
+        }
+      ],
+      worksFor: { '@id': origin + '/#websthan' },
+      sameAs: [
+        profile.links.github,
+        profile.links.linkedin,
+        profile.links.medium,
+        profile.links.youtube,
+        profile.links.websthan
+      ]
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': origin + '/#websthan',
+      name: 'Websthan',
+      description: 'Web design and digital marketing studio founded by ' + profile.identity.name + ', based in ' + profile.identity.location + '.',
+      url: profile.links.websthan,
+      founder: { '@id': origin + '/#person' },
+      email: 'mailto:' + profile.identity.email,
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: profile.identity.locality,
+        addressRegion: profile.identity.region,
+        addressCountry: profile.identity.countryCode
+      },
+      areaServed: [
+        { '@type': 'Country', name: 'Bangladesh' },
+        { '@type': 'Place', name: 'Worldwide (remote)' }
+      ],
+      knowsLanguage: ['en', 'bn'],
+      serviceType: ['Web design', 'Web development', 'Digital marketing', 'SEO']
+    },
+    {
+      '@type': 'WebSite',
+      '@id': origin + '/#website',
+      url: origin + '/',
+      name: profile.seo.siteName,
+      description: profile.seo.description,
+      inLanguage: 'en-BD',
+      publisher: { '@id': origin + '/#person' }
+    },
+    {
+      '@type': 'WebPage',
+      '@id': canonical + '#webpage',
+      url: canonical,
+      name: title,
+      description: description,
+      inLanguage: 'en-BD',
+      isPartOf: { '@id': origin + '/#website' },
+      about: { '@id': origin + '/#person' }
+    }
+  ]
+}) %>
+</script>

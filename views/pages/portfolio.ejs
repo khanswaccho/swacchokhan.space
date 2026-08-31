@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en-BD">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/ambience') %>
+  <%- include('../partials/icons') %>
+  <%- include('../partials/nav') %>
+
+  <main id="main">
+
+    <!-- ═════════════════════════════════════════════════════════ INTRO ═══ -->
+    <section class="page-head">
+      <div class="shell">
+        <span class="eyebrow" data-reveal>Portfolio</span>
+        <h1 data-reveal style="--i:1">
+          <span class="grad-text">Things I've made</span>
+        </h1>
+        <p class="lede" data-reveal style="--i:2">
+          Live from my GitHub, plus the agency I run and the writing I publish. Some of
+          it is polished, some of it is me learning in public — I've left both in.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ WEBSTHAN ═══ -->
+    <section class="section" style="padding-top:1rem" id="websthan">
+      <div class="shell">
+        <div class="glass feature" data-reveal="scale">
+          <div>
+            <span class="eyebrow">The main thing</span>
+            <h2 style="margin-top:0.9rem">Websthan</h2>
+            <p class="lede" style="margin-top:1.15rem">
+              The web design and digital marketing agency I founded in Dhaka. I lead the
+              tech team, set the business strategy and handle our clients directly — and
+              I'm still the one writing front-end code when a build needs it.
+            </p>
+            <div class="chip-row" style="margin-top:1.5rem">
+              <span class="chip chip--dot">Team leadership</span>
+              <span class="chip chip--dot">Business strategy</span>
+              <span class="chip chip--dot">Client relationships</span>
+              <span class="chip chip--dot">Web design &amp; development</span>
+              <span class="chip chip--dot">Digital marketing</span>
+              <span class="chip chip--dot">SEO</span>
+            </div>
+            <div class="btn-row" style="margin-top:1.85rem">
+              <a class="btn btn--primary" href="<%= profile.links.websthan %>" target="_blank" rel="noopener noreferrer" data-cursor="hover" data-magnetic>
+                <svg aria-hidden="true"><use href="#i-globe"></use></svg>
+                Visit websthan.online
+              </a>
+              <a class="btn btn--ghost" href="/contact" data-cursor="hover" data-magnetic>
+                Work with the agency
+                <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+              </a>
+            </div>
+          </div>
+          <div class="feature__visual">
+            <span class="feature__visual-grid" aria-hidden="true"></span>
+            <span class="feature__logo">
+              WEBSTHAN
+              <small>websthan.online</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ GITHUB ═══ -->
+    <section class="section" id="repositories">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Open source</span>
+          <h2>GitHub repositories</h2>
+          <p class="lede">
+            Pulled live from <a class="link-underline" href="<%= profile.links.github %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">@<%= profile.githubUser %></a>
+            — refreshed automatically, so this is whatever I'm actually working on.
+          </p>
+        </div>
+
+        <% if (github.profile) { %>
+          <div class="glass glass--lit gh-profile" data-spotlight data-reveal style="margin-bottom:1.5rem">
+            <img
+              class="gh-profile__avatar"
+              src="<%= github.profile.avatar %>"
+              alt=""
+              width="76" height="76"
+              loading="lazy"
+              decoding="async"
+            >
+            <div>
+              <h3 style="font-size:1.15rem">@<%= github.profile.login %></h3>
+              <p style="font-size:0.875rem;color:var(--text-3);margin-top:0.35rem;max-width:44ch">
+                <%= github.profile.bio || profile.identity.shortBio %>
+              </p>
+            </div>
+            <div class="gh-profile__stats">
+              <div class="gh-stat"><b><%= github.stats.total %></b><span>Repos</span></div>
+              <div class="gh-stat"><b><%= github.stats.stars %></b><span>Stars</span></div>
+              <div class="gh-stat"><b><%= github.stats.languages.length %></b><span>Languages</span></div>
+            </div>
+          </div>
+        <% } %>
+
+        <% if (github.repos && github.repos.length) { %>
+          <%
+            // A filter row only earns its space once there is enough to filter,
+            // and only for categories that actually have repositories in them.
+            const categories = ['ai', 'web', 'security', 'other'].filter(function (cat) {
+              return github.repos.some(function (r) { return r.category === cat; });
+            });
+            const showFilters = github.repos.length >= 5 && categories.length > 1;
+          %>
+
+          <% if (showFilters) { %>
+            <div class="tl-filter" role="group" aria-label="Filter repositories">
+              <button class="filter-btn is-active" type="button" data-repo-filter="all" data-cursor="hover">
+                All<span class="filter-btn__count"><%= github.repos.length %></span>
+              </button>
+              <% categories.forEach(function (cat) {
+                   const n = github.repos.filter(function (r) { return r.category === cat; }).length; %>
+                <button class="filter-btn" type="button" data-repo-filter="<%= cat %>" data-cursor="hover">
+                  <%= cat === 'ai' ? 'AI / ML' : cat.charAt(0).toUpperCase() + cat.slice(1) %><span class="filter-btn__count"><%= n %></span>
+                </button>
+              <% }); %>
+            </div>
+          <% } %>
+
+          <div class="repo-grid" id="repo-grid">
+            <% github.repos.forEach(function (repo, idx) { %>
+              <article
+                class="glass glass--lit card repo"
+                data-spotlight
+                data-category="<%= repo.category %>"
+                data-reveal
+                style="--i:<%= idx % 6 %>"
+              >
+                <% if (repo.category === 'ai') { %><span class="repo__badge">AI / ML</span><% } %>
+                <div class="repo__head">
+                  <a class="repo__name" href="<%= repo.url %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">
+                    <%= repo.name %>
+                    <svg aria-hidden="true"><use href="#i-external"></use></svg>
+                  </a>
+                </div>
+
+                <p class="repo__desc<%= repo.description ? '' : ' is-empty' %>">
+                  <%= repo.description || 'No description yet — the code speaks for itself.' %>
+                </p>
+
+                <% if (repo.topics && repo.topics.length) { %>
+                  <div class="repo__topics">
+                    <% repo.topics.forEach(function (t) { %><span class="repo__topic"><%= t %></span><% }); %>
+                  </div>
+                <% } %>
+
+                <div class="repo__foot">
+                  <% if (repo.language) { %>
+                    <span class="repo__lang" style="--lang:<%= repo.languageColor %>">
+                      <i aria-hidden="true"></i><%= repo.language %>
+                    </span>
+                  <% } %>
+                  <span class="repo__stat"><svg aria-hidden="true"><use href="#i-star"></use></svg><%= repo.stars %></span>
+                  <span class="repo__stat"><svg aria-hidden="true"><use href="#i-fork"></use></svg><%= repo.forks %></span>
+                  <% if (repo.homepage) { %>
+                    <a class="repo__stat link-underline" href="<%= repo.homepage %>" target="_blank" rel="noopener noreferrer" style="margin-left:auto" data-cursor="hover">Live ↗</a>
+                  <% } %>
+                </div>
+              </article>
+            <% }); %>
+          </div>
+
+          <p class="repo-empty is-hidden" id="repo-none" style="display:none">Nothing in that category yet.</p>
+
+          <% if (github.repos.length < 4) { %>
+            <p class="muted" data-reveal style="margin-top:1.5rem;font-size:0.875rem;max-width:64ch">
+              My public GitHub is young on purpose — most of my build hours so far have gone into
+              client sites through <a class="link-underline" href="<%= profile.links.websthan %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">Websthan</a>,
+              which live on their own domains, and into AI/ML work I'm still learning my way through.
+              What's here grows as I ship.
+            </p>
+          <% } %>
+        <% } else { %>
+          <div class="glass card repo-empty" data-reveal>
+            <p>
+              GitHub isn't answering right now. You can see everything directly at
+              <a class="link-underline" href="<%= profile.links.github %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">github.com/<%= profile.githubUser %></a>.
+            </p>
+          </div>
+        <% } %>
+
+        <div class="btn-row" style="margin-top:1.75rem;justify-content:center">
+          <a class="btn btn--ghost" href="<%= profile.links.github %>" target="_blank" rel="noopener noreferrer" data-cursor="hover" data-magnetic>
+            <svg aria-hidden="true"><use href="#i-github"></use></svg>
+            All repositories on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ WRITING ═══ -->
+    <section class="section" id="writing">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Writing</span>
+          <h2>Articles &amp; essays</h2>
+        </div>
+
+        <div class="glass glass--lit card" data-spotlight data-reveal style="display:flex;flex-wrap:wrap;gap:1.75rem;align-items:center;justify-content:space-between">
+          <div style="max-width:56ch">
+            <div style="display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem">
+              <span class="hobby__icon"><svg aria-hidden="true"><use href="#i-medium"></use></svg></span>
+              <h3 style="font-size:1.15rem">Medium</h3>
+            </div>
+            <p style="font-size:0.92rem"><%= profile.writing.note %></p>
+          </div>
+          <a class="btn btn--primary" href="<%= profile.writing.profile %>" target="_blank" rel="noopener noreferrer" data-cursor="hover" data-magnetic>
+            Read on Medium
+            <svg aria-hidden="true"><use href="#i-external"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ ARCHIVE ═══ -->
+    <section class="section" id="archive" style="padding-top:0">
+      <div class="shell">
+        <div class="glass card" data-reveal style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;justify-content:space-between;opacity:0.82">
+          <div style="max-width:58ch">
+            <span class="eyebrow eyebrow--plain">Archive</span>
+            <h3 style="font-size:1.05rem;margin-top:0.6rem">Before the code — video editing</h3>
+            <p style="font-size:0.86rem;color:var(--text-3);margin-top:0.5rem">
+              Years of freelance editing and a YouTube channel taught me pacing, storytelling
+              and how to hold an audience. It's not what I do now, but it's kept here.
+            </p>
+          </div>
+          <div class="btn-row">
+            <a class="btn--quiet" href="<%= profile.links.videoPortfolio %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">
+              Video editing portfolio ↗
+            </a>
+            <a class="btn--quiet" href="<%= profile.links.youtube %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">
+              YouTube channel ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════ CTA ═══ -->
+    <section class="section">
+      <div class="shell">
+        <div class="glass cta" data-reveal="scale">
+          <span class="eyebrow eyebrow--plain" style="justify-content:center">Next</span>
+          <h2 style="margin-top:1rem">Want something like this, built for you?</h2>
+          <p class="lede">
+            Websthan takes on web design and digital marketing work — and I'm always up for
+            an interesting AI or web project.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="/contact" data-cursor="hover" data-magnetic>
+              Start a project
+              <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('../partials/chat') %>
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+</body>
+</html>

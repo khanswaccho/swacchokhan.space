@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en-BD">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/ambience') %>
+  <%- include('../partials/icons') %>
+  <%- include('../partials/nav') %>
+
+  <main id="main">
+
+    <!-- ═══════════════════════════════════════════════════════════ HERO ═══ -->
+    <section class="hero" id="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <canvas id="trail-canvas" aria-hidden="true"></canvas>
+      <div class="hero__glow" id="hero-glow" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            <%= profile.identity.availability %>
+          </div>
+
+          <h1>
+            <span class="line"><span class="grad-text" data-split>Swaccho</span></span>
+            <span class="line"><span class="grad-text" data-split data-split-offset="7">Khan</span></span>
+          </h1>
+
+          <p class="hero__role">
+            <span class="hero__role-prefix">const role =</span>
+            <span class="hero__role-word" id="role-word">AI &amp; ML programmer</span><span class="hero__caret" aria-hidden="true"></span>
+          </p>
+
+          <p class="lede hero__lede">
+            I'm a computer science undergraduate teaching myself machine learning from the
+            maths up, and running <a class="link-underline" href="<%= profile.links.websthan %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">Websthan</a>
+            — the web design and digital marketing agency I founded and lead. Everything I make starts
+            the same way: <em>take it apart, understand it, build it better.</em>
+          </p>
+
+          <div class="btn-row hero__actions">
+            <a class="btn btn--primary" href="/portfolio" data-cursor="hover" data-magnetic>
+              See what I've built
+              <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+            <a class="btn btn--ghost" href="/journey" data-cursor="hover" data-magnetic>
+              <svg aria-hidden="true"><use href="#i-book"></use></svg>
+              Open the book
+            </a>
+          </div>
+
+          <div class="social-row" style="margin-bottom:2.25rem">
+            <a class="social" href="<%= profile.links.github %>" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-cursor="hover">
+              <svg aria-hidden="true"><use href="#i-github"></use></svg>
+            </a>
+            <a class="social" href="<%= profile.links.linkedin %>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-cursor="hover">
+              <svg aria-hidden="true"><use href="#i-linkedin"></use></svg>
+            </a>
+            <a class="social" href="<%= profile.links.medium %>" target="_blank" rel="noopener noreferrer" aria-label="Medium" data-cursor="hover">
+              <svg aria-hidden="true"><use href="#i-medium"></use></svg>
+            </a>
+            <a class="social" href="<%= profile.links.youtube %>" target="_blank" rel="noopener noreferrer" aria-label="YouTube" data-cursor="hover">
+              <svg aria-hidden="true"><use href="#i-youtube"></use></svg>
+            </a>
+            <a class="social social--labelled" href="mailto:<%= profile.identity.email %>" data-cursor="hover">
+              <svg aria-hidden="true"><use href="#i-mail"></use></svg>
+              <span>Email me</span>
+            </a>
+          </div>
+
+          <dl class="hero__meta">
+            <div class="hero__meta-item">
+              <dt>Currently</dt>
+              <dd>BSc Computer Science, UCSI</dd>
+            </div>
+            <div class="hero__meta-item">
+              <dt>Building</dt>
+              <dd>Websthan · AI projects</dd>
+            </div>
+            <div class="hero__meta-item">
+              <dt>Based in</dt>
+              <dd>Dhaka, Bangladesh</dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="hero__aside">
+          <div class="glass glass--lit hero__card" data-spotlight data-tilt>
+            <div class="hero__portrait">
+              <span class="hero__portrait-fallback" id="portrait-fallback" aria-hidden="true" data-initials="<%= profile.identity.initials %>"></span>
+              <img
+                id="portrait"
+                src="/img/swaccho.jpg"
+                alt="Portrait of <%= profile.identity.name %>"
+                width="600" height="600"
+                loading="eager"
+                decoding="async"
+                <% if (avatarFallback) { %>data-fallback-src="<%= avatarFallback %>"<% } %>
+              >
+              <span class="hero__scan" aria-hidden="true"></span>
+            </div>
+            <div class="hero__card-foot">
+              <div class="hero__card-name">
+                <%= profile.identity.name %>
+                <small><%= profile.identity.legalName %></small>
+              </div>
+              <span class="chip chip--dot" style="color:var(--cyan)">Online</span>
+            </div>
+          </div>
+
+          <span class="hero__orbit hero__orbit--1">python · ml</span>
+          <span class="hero__orbit hero__orbit--2">websthan.online</span>
+          <span class="hero__orbit hero__orbit--3">6A* · IELTS 7.5</span>
+        </aside>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="hero__scroll-line"></span>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ MARQUEE ═══ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <% for (let pass = 0; pass < 2; pass++) { %>
+          <% ['Python', 'Machine Learning', 'Neural Networks', 'JavaScript', 'C', 'Node.js', 'Web Design', 'SEO', 'Three.js', 'Cybersecurity', 'Technical Writing', 'Websthan'].forEach(function (word) { %>
+            <span class="marquee__item"><%= word %></span>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ NOW ═══ -->
+    <section class="section" style="padding-block:clamp(3rem,7vh,5rem)">
+      <div class="shell">
+        <dl class="now-strip" data-reveal>
+          <div class="now-strip__cell">
+            <dt><span class="status-dot" aria-hidden="true"></span> Learning</dt>
+            <dd>AI &amp; machine learning<span>Python, neural network fundamentals and the maths underneath them.</span></dd>
+          </div>
+          <div class="now-strip__cell">
+            <dt><svg width="12" height="12" aria-hidden="true" style="color:var(--violet-soft)"><use href="#i-orbit"></use></svg> Running</dt>
+            <dd>Websthan<span>Leading the tech team, the strategy and the clients at my Dhaka agency.</span></dd>
+          </div>
+          <div class="now-strip__cell">
+            <dt><svg width="12" height="12" aria-hidden="true" style="color:var(--cyan)"><use href="#i-cap"></use></svg> Studying</dt>
+            <dd>CSE at UCSI University<span>Bachelor's in Computer Science &amp; Engineering, since January 2026.</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════ FOCUS ═══ -->
+    <section class="section" id="focus">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">What I actually do</span>
+          <h2>Two things have my attention<span class="accent-text">.</span></h2>
+          <p class="lede">
+            Everything else on this site is context. These are the two places my hours
+            genuinely go — one I'm learning, one I'm running.
+          </p>
+        </div>
+
+        <div class="focus-grid">
+          <% profile.focus.filter(function (f) { return f.primary; }).forEach(function (item, idx) { %>
+            <article class="glass glass--lit card focus-card focus-card--primary" data-spotlight data-reveal="scale" style="--i:<%= idx %>">
+              <div class="focus-card__head">
+                <span class="focus-card__icon"><svg aria-hidden="true"><use href="#i-<%= item.icon %>"></use></svg></span>
+                <span class="focus-card__state"><%= item.state %></span>
+              </div>
+              <div>
+                <span class="eyebrow eyebrow--plain"><%= item.eyebrow %></span>
+                <h3><%= item.title %></h3>
+              </div>
+              <p><%= item.summary %></p>
+              <ul class="focus-card__points">
+                <% item.points.forEach(function (p) { %><li><%= p %></li><% }); %>
+              </ul>
+              <% if (item.link) { %>
+                <a class="link-underline" href="<%= item.link %>" target="_blank" rel="noopener noreferrer" data-cursor="hover" style="margin-top:0.35rem">
+                  <%= item.linkLabel %>
+                  <svg width="13" height="13" aria-hidden="true"><use href="#i-external"></use></svg>
+                </a>
+              <% } %>
+            </article>
+          <% }); %>
+
+          <% profile.focus.filter(function (f) { return !f.primary; }).forEach(function (item, idx) { %>
+            <article class="glass glass--lit card focus-card focus-card--minor" data-spotlight data-reveal="scale" style="--i:<%= idx + 2 %>">
+              <div class="focus-card__head">
+                <span class="focus-card__icon"><svg aria-hidden="true"><use href="#i-<%= item.icon %>"></use></svg></span>
+                <span class="chip"><%= item.state %></span>
+              </div>
+              <div>
+                <span class="eyebrow eyebrow--plain"><%= item.eyebrow %></span>
+                <h3><%= item.title %></h3>
+              </div>
+              <p style="font-size:0.885rem"><%= item.summary %></p>
+            </article>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ SKILLS ═══ -->
+    <section class="section" id="skills">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Toolkit</span>
+          <h2>What I can do today — and what I'm still building</h2>
+          <p class="lede">
+            Labelled honestly. <strong>Core</strong> is what I reach for without thinking,
+            <strong>building</strong> is where I'm actively putting in hours right now.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <% profile.skills.forEach(function (group, idx) { %>
+            <div class="glass glass--lit card skill-group" data-spotlight data-reveal style="--i:<%= idx %>">
+              <h3 class="skill-group__title"><%= group.group %></h3>
+              <span class="skill-group__note"><%= group.note %></span>
+              <ul class="skill-list">
+                <% group.items.forEach(function (s) { %>
+                  <li class="skill">
+                    <span><%= s.name %></span>
+                    <span class="skill__level" data-level="<%= s.level %>"><%= s.level %></span>
+                  </li>
+                <% }); %>
+              </ul>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ JOURNEY ═══ -->
+    <section class="section" id="journey-teaser">
+      <div class="shell">
+        <div class="glass feature" data-reveal="scale">
+          <div>
+            <span class="eyebrow">My journey</span>
+            <h2 style="margin-top:0.9rem">A life in <em>nine chapters</em></h2>
+            <p class="lede" style="margin-top:1.15rem">
+              A first computer. Video editing, then YouTube. The school years. A move
+              abroad and back. A small e-commerce. A few articles. Websthan.
+              And now, machine learning.
+            </p>
+            <p style="margin-top:1rem;color:var(--text-3);font-size:0.9rem">
+              Each one led to the next — so I built it as a book you can actually turn,
+              in 3D, page by page.
+            </p>
+            <div class="btn-row" style="margin-top:1.85rem">
+              <a class="btn btn--primary" href="/journey" data-cursor="hover" data-magnetic>
+                Open the book
+                <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+              </a>
+            </div>
+          </div>
+          <div class="feature__visual">
+            <span class="feature__visual-grid" aria-hidden="true"></span>
+            <span class="feature__logo">
+              IX
+              <small>Chapters</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ HOBBIES ═══ -->
+    <section class="section" id="hobbies">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Off the clock</span>
+          <h2>The other half of me</h2>
+          <p class="lede">
+            Most of what I'm good at professionally started as something I did for fun.
+            These are the ones that stuck.
+          </p>
+        </div>
+
+        <div class="hobby-grid">
+          <% profile.hobbies.forEach(function (h, idx) { %>
+            <article class="glass glass--lit card hobby<%= h.past ? ' hobby--past' : '' %>" data-spotlight data-reveal style="--i:<%= idx %>">
+              <div class="hobby__head">
+                <span class="hobby__icon"><svg aria-hidden="true"><use href="#i-<%= h.icon %>"></use></svg></span>
+                <% if (h.past) { %><span class="hobby__tense">No longer active</span><% } %>
+              </div>
+              <h3><%= h.name %></h3>
+              <p><%= h.detail %></p>
+
+              <% if (h.link || h.archiveLinks) { %>
+                <div class="hobby__actions">
+                  <% if (h.link) { %>
+                    <a class="btn btn--ghost btn--sm" href="<%= h.link %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">
+                      <%= h.linkLabel %>
+                      <svg aria-hidden="true"><use href="#i-external"></use></svg>
+                    </a>
+                  <% } %>
+                  <% (h.archiveLinks || []).forEach(function (a) { %>
+                    <a class="btn--quiet" href="<%= profile.links[a.urlKey] %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">
+                      <%= a.label %> ↗
+                    </a>
+                  <% }); %>
+                </div>
+              <% } %>
+            </article>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════ CTA ═══ -->
+    <section class="section">
+      <div class="shell">
+        <div class="glass cta" data-reveal="scale">
+          <span class="eyebrow eyebrow--plain" style="justify-content:center">Say hello</span>
+          <h2 style="margin-top:1rem">Got something worth building?</h2>
+          <p class="lede">
+            I'm open to internships, freelance work and collaborations — especially anything
+            with AI, machine learning or the web in it.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="/contact" data-cursor="hover" data-magnetic>
+              Start a conversation
+              <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+            <a class="btn btn--ghost" href="mailto:<%= profile.identity.email %>" data-cursor="hover" data-magnetic>
+              <svg aria-hidden="true"><use href="#i-mail"></use></svg>
+              <%= profile.identity.email %>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('../partials/chat') %>
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+</body>
+</html>

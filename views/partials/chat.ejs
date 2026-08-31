@@ -1,0 +1,64 @@
+<!-- Site assistant. Answers are composed server-side from data/profile.json. -->
+<div class="chat" id="chat">
+  <button
+    class="chat__launcher"
+    id="chat-launcher"
+    type="button"
+    aria-expanded="false"
+    aria-controls="chat-panel"
+    aria-label="Open the site assistant"
+    data-cursor="hover"
+  >
+    <span class="chat__launcher-icon" aria-hidden="true">
+      <svg class="chat__icon-open"><use href="#i-chat"></use></svg>
+      <svg class="chat__icon-close"><use href="#i-close"></use></svg>
+    </span>
+    <span class="chat__launcher-label">Ask me anything</span>
+    <span class="chat__ping" aria-hidden="true"></span>
+  </button>
+
+  <section
+    class="chat__panel glass"
+    id="chat-panel"
+    role="dialog"
+    aria-label="Site assistant"
+    aria-modal="false"
+    hidden
+  >
+    <header class="chat__head">
+      <span class="chat__avatar" aria-hidden="true"><%= profile.identity.initials %></span>
+      <div class="chat__title">
+        <strong>Site assistant</strong>
+        <span>Answers about <%= profile.identity.name %></span>
+      </div>
+      <button class="chat__close" id="chat-close" type="button" aria-label="Close the assistant" data-cursor="hover">
+        <svg aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </header>
+
+    <div class="chat__log" id="chat-log" role="log" aria-live="polite" aria-atomic="false"></div>
+
+    <div class="chat__suggestions" id="chat-suggestions"></div>
+
+    <form class="chat__form" id="chat-form" autocomplete="off">
+      <label class="sr-only" for="chat-input">Ask the assistant a question</label>
+      <input
+        class="chat__input"
+        id="chat-input"
+        name="message"
+        type="text"
+        placeholder="Ask about contact, skills, Websthan…"
+        maxlength="500"
+        required
+      >
+      <button class="chat__send" type="submit" aria-label="Send" data-cursor="hover">
+        <svg aria-hidden="true"><use href="#i-send"></use></svg>
+      </button>
+    </form>
+
+    <p class="chat__note">
+      Scripted assistant — it only knows what's on this site.
+      For anything else, <a href="/contact" data-cursor="hover">send a message</a>.
+    </p>
+  </section>
+</div>

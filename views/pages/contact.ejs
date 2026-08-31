@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en-BD">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/ambience') %>
+  <%- include('../partials/icons') %>
+  <%- include('../partials/nav') %>
+
+  <main id="main">
+
+    <!-- ═════════════════════════════════════════════════════════ INTRO ═══ -->
+    <section class="page-head">
+      <div class="shell">
+        <span class="eyebrow" data-reveal>Contact</span>
+        <h1 data-reveal style="--i:1"><span class="grad-text">Let's talk</span></h1>
+        <p class="lede" data-reveal style="--i:2">
+          Internships, freelance builds, a Websthan project, or just a question about
+          something on this site — the form goes straight to my inbox.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════ FORM ═══ -->
+    <section class="section" style="padding-top:1rem">
+      <div class="shell">
+        <div class="contact-layout">
+
+          <div class="glass glass--lit contact-form" data-spotlight data-reveal="scale">
+            <form id="contact-form" method="post" action="/api/contact" novalidate>
+              <!-- CSRF token: verified server-side against an HttpOnly, SameSite=Strict cookie -->
+              <input type="hidden" name="<%= csrfField %>" value="<%= csrfToken %>" id="csrf-input">
+              <input type="hidden" name="renderedAt" value="<%= Date.now() %>">
+
+              <!-- Honeypot — invisible to people, irresistible to bots -->
+              <div class="hp-field" aria-hidden="true">
+                <label for="website">Website (leave this empty)</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="contact-form__grid">
+                <label class="field" for="name">
+                  <span class="field__label">Your name</span>
+                  <input
+                    class="field__input" type="text" id="name" name="name"
+                    placeholder="Jane Doe" required minlength="2" maxlength="80"
+                    autocomplete="name"
+                  >
+                  <span class="field__error" data-error-for="name"></span>
+                </label>
+
+                <label class="field" for="email">
+                  <span class="field__label">Email</span>
+                  <input
+                    class="field__input" type="email" id="email" name="email"
+                    placeholder="you@example.com" required maxlength="254"
+                    autocomplete="email" inputmode="email"
+                  >
+                  <span class="field__error" data-error-for="email"></span>
+                </label>
+              </div>
+
+              <div class="contact-form__grid contact-form__grid--full">
+                <label class="field" for="subject">
+                  <span class="field__label">
+                    Subject
+                    <span class="field__counter" data-counter-for="subject">0 / 120</span>
+                  </span>
+                  <input
+                    class="field__input" type="text" id="subject" name="subject"
+                    placeholder="What is this about?" maxlength="120"
+                  >
+                  <span class="field__error" data-error-for="subject"></span>
+                </label>
+
+                <label class="field" for="message">
+                  <span class="field__label">
+                    Message
+                    <span class="field__counter" data-counter-for="message">0 / 4000</span>
+                  </span>
+                  <textarea
+                    class="field__textarea" id="message" name="message"
+                    placeholder="Tell me what you have in mind…" required minlength="12" maxlength="4000"
+                  ></textarea>
+                  <span class="field__error" data-error-for="message"></span>
+                </label>
+              </div>
+
+              <div class="btn-row" style="margin-top:1.75rem">
+                <button class="btn btn--primary" type="submit" id="contact-submit" data-cursor="hover" data-magnetic>
+                  Send message
+                  <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                </button>
+                <span class="mono muted" style="font-size:0.72rem">I reply within a day or two.</span>
+              </div>
+
+              <div class="form-status" id="form-status" role="status" aria-live="polite">
+                <svg aria-hidden="true" id="form-status-icon"><use href="#i-check"></use></svg>
+                <span id="form-status-text"></span>
+              </div>
+            </form>
+          </div>
+
+          <aside class="contact-aside">
+            <div class="glass glass--lit contact-card" data-spotlight data-reveal style="--i:1">
+              <h3>Direct</h3>
+              <a class="contact-mail" href="mailto:<%= profile.identity.email %>" data-cursor="hover">
+                <svg aria-hidden="true"><use href="#i-mail"></use></svg>
+                <%= profile.identity.email %>
+                <span class="copy-btn" id="copy-email" role="button" tabindex="0">Copy</span>
+              </a>
+              <p style="font-size:0.82rem;color:var(--text-3);margin-top:0.9rem;display:flex;align-items:center;gap:0.5rem">
+                <svg width="14" height="14" aria-hidden="true" style="color:var(--cyan);flex:none"><use href="#i-map"></use></svg>
+                <%= profile.identity.location %>
+              </p>
+            </div>
+
+            <div class="glass glass--lit contact-card" data-spotlight data-reveal style="--i:2">
+              <h3>Find me</h3>
+              <div class="social-row" style="margin-top:0.35rem">
+                <a class="social" href="<%= profile.links.github %>" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-cursor="hover">
+                  <svg aria-hidden="true"><use href="#i-github"></use></svg>
+                </a>
+                <a class="social" href="<%= profile.links.linkedin %>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-cursor="hover">
+                  <svg aria-hidden="true"><use href="#i-linkedin"></use></svg>
+                </a>
+                <a class="social" href="<%= profile.links.medium %>" target="_blank" rel="noopener noreferrer" aria-label="Medium" data-cursor="hover">
+                  <svg aria-hidden="true"><use href="#i-medium"></use></svg>
+                </a>
+                <a class="social" href="<%= profile.links.youtube %>" target="_blank" rel="noopener noreferrer" aria-label="YouTube" data-cursor="hover">
+                  <svg aria-hidden="true"><use href="#i-youtube"></use></svg>
+                </a>
+                <a class="social" href="<%= profile.links.websthan %>" target="_blank" rel="noopener noreferrer" aria-label="Websthan" data-cursor="hover">
+                  <svg aria-hidden="true"><use href="#i-globe"></use></svg>
+                </a>
+              </div>
+              <div class="chip-row" style="margin-top:1.25rem">
+                <span class="chip chip--dot" style="color:#7ff0c0"><%= profile.identity.availability %></span>
+              </div>
+            </div>
+
+            <div class="glass glass--lit contact-card" data-spotlight data-reveal style="--i:3">
+              <h3>Good things to ask about</h3>
+              <ul class="focus-card__points" style="margin-top:0.85rem">
+                <li>An AI or machine learning project</li>
+                <li>A website — design, build or rescue</li>
+                <li>SEO and digital marketing through Websthan</li>
+                <li>Internships and collaboration</li>
+                <li>IELTS coaching</li>
+              </ul>
+            </div>
+
+            <div class="security-note" data-reveal style="--i:4">
+              <svg aria-hidden="true"><use href="#i-lock"></use></svg>
+              <span>
+                This form is protected by a signed CSRF token, a strict Content-Security-Policy
+                and rate limiting. Your details are used to reply to you — nothing else, nowhere else.
+              </span>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('../partials/chat') %>
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+</body>
+</html>

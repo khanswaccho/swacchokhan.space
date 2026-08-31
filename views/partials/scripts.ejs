@@ -1,0 +1,18 @@
+<script type="module" src="/js/main.js" nonce="<%= cspNonce %>"></script>
+<script type="module" src="/js/chat.js" nonce="<%= cspNonce %>"></script>
+
+<% if (page === 'home') { %>
+  <script type="module" src="/js/hero.js" nonce="<%= cspNonce %>"></script>
+<% } %>
+
+<% if (page === 'journey') { %>
+  <script type="module" src="/js/book.js" nonce="<%= cspNonce %>"></script>
+<% } %>
+
+<% if (page === 'portfolio') { %>
+  <script type="module" src="/js/repos.js" nonce="<%= cspNonce %>"></script>
+<% } %>
+
+<% if (page === 'contact') { %>
+  <script type="module" src="/js/contact.js" nonce="<%= cspNonce %>"></script>
+<% } %>

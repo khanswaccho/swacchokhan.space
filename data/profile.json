@@ -1,0 +1,568 @@
+{
+  "identity": {
+    "name": "Swaccho Khan",
+    "legalName": "KM Tariful Islam Shoccho",
+    "initials": "SK",
+    "headline": "AI Programmer & Agency Founder in Dhaka",
+    "roles": [
+      "AI & ML programmer",
+      "web developer",
+      "founder of Websthan",
+      "computer science undergrad"
+    ],
+    "tagline": "I build with code, learn machines, and ship the web.",
+    "positioning": "I'm a computer science undergraduate in Dhaka who lives in the terminal. My days go into learning AI and machine learning properly — from the maths up — and into running Websthan, the agency I founded, where I lead the tech team, set the business strategy and look after clients. Everything I do comes back to the same instinct: take a thing apart, understand it, then build it better.",
+    "shortBio": "Computer Science undergraduate based in Dhaka, Bangladesh. I write code, study machine learning, and run Websthan — a web design and digital marketing agency where I lead the tech team and handle clients.",
+    "location": "Dhaka, Bangladesh",
+    "locality": "Dhaka",
+    "region": "Dhaka Division",
+    "country": "Bangladesh",
+    "countryCode": "BD",
+    "regionCode": "BD-C",
+    "geo": {
+      "lat": "23.8103",
+      "lon": "90.4125"
+    },
+    "serviceArea": "Bangladesh · remote worldwide",
+    "availability": "Open to internships, freelance builds & collaboration",
+    "email": "khanswaccho@gmail.com",
+    "languages": [
+      "Bengali (native)",
+      "English (IELTS 7.5)",
+      "Hindi"
+    ]
+  },
+  "links": {
+    "github": "https://github.com/khanswaccho",
+    "linkedin": "https://www.linkedin.com/in/swaccho/",
+    "medium": "https://medium.com/@khanswaccho",
+    "youtube": "https://www.youtube.com/@swacchokhan",
+    "websthan": "https://websthan.online",
+    "videoPortfolio": "https://drive.google.com/drive/folders/1eRemna0D3tXGNM-4Yfr1MR4NoktwYIxu?usp=drive_link"
+  },
+  "githubUser": "khanswaccho",
+  "focus": [
+    {
+      "id": "ai",
+      "primary": true,
+      "eyebrow": "Primary focus",
+      "title": "AI & Machine Learning",
+      "summary": "The centre of everything I'm doing right now. I'm working through machine learning from first principles — linear algebra and statistics underneath, Python and the modern ML stack on top — so that I understand models rather than just call them.",
+      "points": [
+        "Python as a first-class ML language: data handling, vectorised maths, experiment loops",
+        "Neural network fundamentals — how gradients, layers and loss functions actually behave",
+        "Building with LLM APIs and agent tooling, not just prompting them",
+        "Turning notebooks into real, deployed, useful software"
+      ],
+      "state": "Actively learning & building",
+      "icon": "neural"
+    },
+    {
+      "id": "websthan",
+      "primary": true,
+      "eyebrow": "What I run",
+      "title": "Websthan",
+      "summary": "The web design and digital marketing agency I founded and run from Dhaka. I lead the tech team, set the business strategy, and stay the point of contact for our clients — so the work has to be right technically and commercially.",
+      "points": [
+        "Lead and manage the tech team — delegation, code standards, delivery",
+        "Set business strategy: positioning, pricing, which work we take on",
+        "Own client relationships end to end, from first brief to long after launch",
+        "Still build: front-end engineering, deployment, SEO and performance"
+      ],
+      "state": "Founder — leads the team",
+      "link": "https://websthan.online",
+      "linkLabel": "websthan.online",
+      "icon": "orbit"
+    },
+    {
+      "id": "web",
+      "primary": false,
+      "eyebrow": "Craft",
+      "title": "Web Development",
+      "summary": "Where my programming actually began. I've been building websites since long before they paid — blogs, brand sites, experiments and this one.",
+      "points": [
+        "HTML, CSS, JavaScript — written by hand, not generated",
+        "Node.js services with real security posture",
+        "Motion, 3D and interaction as part of the engineering, not decoration"
+      ],
+      "state": "Daily practice",
+      "icon": "grid"
+    },
+    {
+      "id": "security",
+      "primary": false,
+      "eyebrow": "Interest",
+      "title": "Cybersecurity",
+      "summary": "A serious side interest. I want the things I build to be defensible, so I read about attack surfaces, web vulnerabilities and hardening — then apply it.",
+      "points": [
+        "Web security fundamentals: CSRF, XSS, CSP, injection, session handling",
+        "Defensive engineering habits baked into every project I ship"
+      ],
+      "state": "Studying",
+      "icon": "shield"
+    }
+  ],
+  "skills": [
+    {
+      "group": "AI / Machine Learning",
+      "note": "in progress — this is where my hours go",
+      "items": [
+        {
+          "name": "Python for ML",
+          "level": "building"
+        },
+        {
+          "name": "Neural network fundamentals",
+          "level": "building"
+        },
+        {
+          "name": "Data wrangling & analysis",
+          "level": "building"
+        },
+        {
+          "name": "LLM APIs & agent tooling",
+          "level": "building"
+        },
+        {
+          "name": "Maths for ML (linear algebra, stats)",
+          "level": "building"
+        }
+      ]
+    },
+    {
+      "group": "Programming",
+      "note": "the tools I reach for first",
+      "items": [
+        {
+          "name": "Python",
+          "level": "core"
+        },
+        {
+          "name": "C",
+          "level": "core"
+        },
+        {
+          "name": "JavaScript",
+          "level": "core"
+        },
+        {
+          "name": "Git & GitHub",
+          "level": "core"
+        },
+        {
+          "name": "Algorithms & problem solving",
+          "level": "core"
+        }
+      ]
+    },
+    {
+      "group": "Web",
+      "note": "how Websthan gets built",
+      "items": [
+        {
+          "name": "HTML5 & semantic markup",
+          "level": "core"
+        },
+        {
+          "name": "CSS3, layout & motion",
+          "level": "core"
+        },
+        {
+          "name": "Node.js & Express",
+          "level": "building"
+        },
+        {
+          "name": "Three.js / WebGL",
+          "level": "building"
+        },
+        {
+          "name": "SEO & performance",
+          "level": "core"
+        }
+      ]
+    },
+    {
+      "group": "Leading & communicating",
+      "note": "what running an agency actually takes",
+      "items": [
+        {
+          "name": "Team & delivery management",
+          "level": "core"
+        },
+        {
+          "name": "Business strategy",
+          "level": "core"
+        },
+        {
+          "name": "Client relationships",
+          "level": "core"
+        },
+        {
+          "name": "Digital marketing",
+          "level": "core"
+        },
+        {
+          "name": "Teaching & mentoring",
+          "level": "core"
+        },
+        {
+          "name": "Cybersecurity foundations",
+          "level": "exploring"
+        },
+        {
+          "name": "Writing",
+          "level": "building"
+        },
+        {
+          "name": "Video editing",
+          "level": "past"
+        }
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "numeral": "Prologue",
+      "era": "2010 — 2019",
+      "title": "The Boy and the Machine",
+      "subtitle": "Sirajganj, Bangladesh",
+      "body": [
+        "It started the way it starts for a lot of people: a computer, and games I wasn't supposed to be playing. Then the internet arrived properly, and the machine stopped being a toy and became a door.",
+        "I was an active, loud child everywhere except in one place — with a book. Reading alone did something to me that nothing else did. It handed me other people's perspectives and quietly built the way I think."
+      ],
+      "bridge": "The door opened onto a question: what could I actually make with this thing?",
+      "tags": [
+        "curiosity",
+        "reading",
+        "first computer"
+      ]
+    },
+    {
+      "numeral": "Chapter I",
+      "era": "2019 — 2022",
+      "title": "Frames and Voice",
+      "subtitle": "Video editing · YouTube · a former life",
+      "body": [
+        "The answer, for a while, was video. Editing was the first skill I taught myself off the internet, and it turned into freelance work and then a YouTube channel that changed more than I expected.",
+        "It taught me to write a script, hold an audience and say a thing clearly. I don't do it any more — the channel and the edits are an archive now — but somewhere in all that timeline-scrubbing I noticed the software was more interesting to me than the footage."
+      ],
+      "bridge": "So I put the timeline down and picked up a syllabus.",
+      "tags": [
+        "video editing",
+        "youtube",
+        "past work",
+        "script writing"
+      ]
+    },
+    {
+      "numeral": "Chapter II",
+      "era": "2022 — 2023",
+      "title": "The School Years",
+      "subtitle": "Jewel's Oxford International School & College",
+      "body": [
+        "Twelve years at one school, ending with O-Levels that went well. I was vice-president of the basketball club, volunteered for every school function I could find, and won a fair share of school tournaments along the way.",
+        "Then I went back to the same school on the other side of the desk — teaching physics and chemistry, writing lesson plans and learning the thing that has stuck with me longest: you don't really understand something until you have to explain it."
+      ],
+      "bridge": "Explaining things well turned out to be portable. So did leaving home.",
+      "tags": [
+        "o-levels",
+        "basketball VP",
+        "science teacher"
+      ]
+    },
+    {
+      "numeral": "Chapter III",
+      "era": "2024 — 2025",
+      "title": "A New Country",
+      "subtitle": "SEGi University, Kota Damansara, Malaysia",
+      "body": [
+        "I moved abroad for a Foundation in Science and finished my last semester on a 3.68 CGPA. Physics, chemistry, mathematics, computing — and a much harder syllabus in living alone in a country that wasn't mine.",
+        "I joined the Student Representative Council, campaigned in the 2024 presidential election, helped run the university orientation, volunteered on donation drives and tree-planting, and coordinated the Career to Campus fair. I also worked evening shifts to pay for it. It was a full year."
+      ],
+      "bridge": "A full year, and still not enough. I wanted something that was mine.",
+      "tags": [
+        "CGPA 3.68",
+        "student council",
+        "volunteering",
+        "IELTS 7.5"
+      ]
+    },
+    {
+      "numeral": "Chapter IV",
+      "era": "2024 — 2025",
+      "title": "The Ledger",
+      "subtitle": "Fesco — a cosmetics e-commerce, Malaysia",
+      "body": [
+        "So alongside the studying in Malaysia I started my own small e-commerce selling cosmetic products. I ran all of it myself: sourcing, marketing, sales, customer messages, the lot.",
+        "It taught me the unglamorous half of building things — setting a goal, measuring whether you actually hit it, and making the next decision from data rather than from hope. When the foundation programme ended I closed it down and flew home."
+      ],
+      "bridge": "Home in Bangladesh, with a year of hard lessons and nothing yet to spend them on.",
+      "tags": [
+        "e-commerce",
+        "marketing",
+        "operations",
+        "Malaysia"
+      ]
+    },
+    {
+      "numeral": "Chapter V",
+      "era": "2024 — now",
+      "title": "Words on the Page",
+      "subtitle": "Medium · a few articles, and counting",
+      "body": [
+        "Reading eventually turned into writing. I've published a handful of articles on Medium so far — I'm a beginner at this and I'd rather say so than pretend otherwise.",
+        "But it's already the sharpest thinking tool I own. If I can't write an idea down clearly, I've found I don't understand it yet. That test has saved me more times in code than it has in prose."
+      ],
+      "bridge": "And what I most wanted to explain clearly was the thing I was building.",
+      "tags": [
+        "medium",
+        "beginner writer",
+        "critical thinking"
+      ]
+    },
+    {
+      "numeral": "Chapter VI",
+      "era": "2025 — now",
+      "title": "Websthan",
+      "subtitle": "websthan.online · an agency in Dhaka",
+      "body": [
+        "Websthan is the agency I founded in Dhaka: web design and digital marketing. It stopped being a one-man operation quickly — now I lead the tech team, decide the business strategy, and stay the person clients actually talk to.",
+        "In the same stretch I started teaching IELTS at Delta Academy and was named their Best Mentor. Running a team, keeping a client happy and teaching a class turn out to use the same muscle: understand the person in front of you, then deliver."
+      ],
+      "bridge": "Delivering well got easier. Then I found the problem I actually wanted to spend years on.",
+      "tags": [
+        "founder",
+        "tech lead",
+        "team management",
+        "business strategy"
+      ]
+    },
+    {
+      "numeral": "Chapter VII",
+      "era": "2026 — now",
+      "title": "Machines That Learn",
+      "subtitle": "BSc Computer Science & Engineering, UCSI University — Bangladesh campus",
+      "body": [
+        "I'm now reading Computer Science & Engineering, and my focus has narrowed to one thing: artificial intelligence and machine learning. Not as a buzzword — as mathematics I want to actually hold in my head.",
+        "Python, the fundamentals of neural networks, the linear algebra and statistics underneath them, and the engineering discipline to turn a working notebook into something people can use. Cybersecurity sits next to it as the discipline that keeps what I build honest."
+      ],
+      "bridge": "Which brings the whole thing up to today.",
+      "tags": [
+        "AI",
+        "machine learning",
+        "CSE",
+        "cybersecurity"
+      ]
+    },
+    {
+      "numeral": "Epilogue",
+      "era": "Next",
+      "title": "The Next Page",
+      "subtitle": "Still being written",
+      "body": [
+        "Every chapter here was a skill I picked up because I was curious, and every one of them fed the next. Editing taught me patience, YouTube taught me to communicate, business taught me to measure, teaching taught me to explain, writing taught me to think.",
+        "All of it now points at code. I want to build AI systems that are genuinely useful, keep Websthan growing, and keep leaving a trail of things I made. If you have something worth building, the last chapter of this book is a contact form."
+      ],
+      "tags": [
+        "open to work",
+        "collaboration",
+        "building"
+      ],
+      "isFinal": true
+    }
+  ],
+  "timeline": [
+    {
+      "period": "Jan 2026 — Present",
+      "title": "BSc Computer Science & Engineering",
+      "org": "UCSI University — Bangladesh campus",
+      "kind": "education",
+      "current": true,
+      "detail": "Reading CSE at UCSI's Bangladesh campus, with a self-directed focus on artificial intelligence and machine learning. Building fluency across Python, Java and C++, algorithm design and systems thinking.",
+      "highlights": [
+        "AI / ML specialisation focus",
+        "Algorithms & data structures",
+        "Multi-language programming"
+      ]
+    },
+    {
+      "period": "2025 — Present",
+      "title": "Founder & Tech Lead",
+      "org": "Websthan — websthan.online",
+      "kind": "work",
+      "current": true,
+      "featured": true,
+      "detail": "Founded and run a web design and digital marketing agency in Dhaka. Manage the team, set business strategy, lead technical delivery and own client relationships — while still building on the front end.",
+      "highlights": [
+        "Team & delivery management",
+        "Business strategy",
+        "Client relationships",
+        "Technical leadership"
+      ]
+    },
+    {
+      "period": "Aug 2025 — Present",
+      "title": "IELTS Instructor",
+      "org": "Delta Academy, Sirajganj",
+      "kind": "work",
+      "current": true,
+      "detail": "Teach IELTS Academic across Listening, Reading, Writing and Speaking. Build lesson plans and practice material, coach exam strategy and academic writing.",
+      "highlights": [
+        "Students reaching their target bands",
+        "Named Best Mentor",
+        "Custom curriculum design"
+      ]
+    },
+    {
+      "period": "Early 2025",
+      "title": "Moved back to Bangladesh",
+      "org": "Dhaka",
+      "kind": "milestone",
+      "detail": "Finished the Foundation in Science, closed Fesco and came home. Everything since — Websthan, teaching, and the CSE degree — has been built from Bangladesh.",
+      "highlights": [
+        "End of the Malaysia year",
+        "Home for good"
+      ]
+    },
+    {
+      "period": "Jan 2025",
+      "title": "Career to Campus — Organising Team",
+      "org": "SEGi University, Malaysia",
+      "kind": "volunteer",
+      "detail": "Coordinated the university career fair: event logistics, guiding students and employers, and keeping communication running between both sides."
+    },
+    {
+      "period": "Nov 2024",
+      "title": "Community Service Volunteer",
+      "org": "Malaysia",
+      "kind": "volunteer",
+      "detail": "Charity events and donation drives, campus orientation support for new international students, and environmental campaigns including tree planting and recycling."
+    },
+    {
+      "period": "Sep 2024",
+      "title": "Representative Council — Presidential Election",
+      "org": "SEGi University, Malaysia",
+      "kind": "volunteer",
+      "detail": "Campaigned in the 2024 SEGi Representative Council presidential election — engaging students, supporting candidates and pushing student representation."
+    },
+    {
+      "period": "2024 — 2025",
+      "title": "Founder",
+      "org": "Fesco — cosmetics e-commerce, Malaysia",
+      "kind": "work",
+      "quiet": true,
+      "detail": "Started and ran a small cosmetics e-commerce solo while studying in Malaysia: sourcing, marketing, sales and operations. Learned goal-setting, measurement and data-driven decisions. Wound it down at the end of the foundation programme."
+    },
+    {
+      "period": "Apr 2024 — Nov 2024",
+      "title": "Sales Associate (Part-time)",
+      "org": "7-Eleven Malaysia Sdn Bhd",
+      "kind": "work",
+      "quiet": true,
+      "detail": "Evening shifts alongside full-time study — customer service, register operations, inventory monitoring and store standards."
+    },
+    {
+      "period": "Feb 2024 — Jan 2025",
+      "title": "Foundation in Science",
+      "org": "SEGi University, Kota Damansara",
+      "kind": "education",
+      "detail": "Physics, chemistry, mathematics, computer science and public speaking, studied in Malaysia. Finished the final semester on a 3.68 CGPA while serving on the Student Representative Council, then returned to Bangladesh.",
+      "highlights": [
+        "CGPA 3.68",
+        "Student Representative Council",
+        "Public speaking"
+      ]
+    },
+    {
+      "period": "Aug 2023 — Dec 2023",
+      "title": "Science Teacher",
+      "org": "Jewel's Oxford International School & College",
+      "kind": "work",
+      "detail": "Taught physics and chemistry to O-Level students. Wrote full lesson plans against the O-Level syllabus, set and marked examinations and coursework."
+    },
+    {
+      "period": "2010 — 2022",
+      "title": "School & O-Levels",
+      "org": "Jewel's Oxford International School & College",
+      "kind": "education",
+      "detail": "Twelve years at the same school, finishing with strong Cambridge O-Level results. Vice-president of the basketball club and a fixture at every school function.",
+      "highlights": [
+        "Cambridge O-Levels",
+        "Vice-President, Basketball Club",
+        "School sports titles"
+      ]
+    }
+  ],
+  "hobbies": [
+    {
+      "name": "Coding",
+      "icon": "code",
+      "detail": "Hobby and profession at once. Most of my side projects start at 1am with no plan whatsoever."
+    },
+    {
+      "name": "Reading",
+      "icon": "book",
+      "detail": "The oldest habit I have. Fiction, non-fiction, whatever rearranges how I see a thing."
+    },
+    {
+      "name": "Writing",
+      "icon": "pen",
+      "detail": "Still new at it — a few articles on Medium so far. It's how I find out whether I actually understand something.",
+      "link": "https://medium.com/@khanswaccho",
+      "linkLabel": "Read on Medium"
+    },
+    {
+      "name": "Chess",
+      "icon": "chess",
+      "detail": "Slow, quiet, and the only game where I can feel myself getting better at thinking."
+    },
+    {
+      "name": "Photography",
+      "icon": "camera",
+      "detail": "A leftover from the editing years — I still frame things before I look at them."
+    },
+    {
+      "name": "YouTube & video editing",
+      "icon": "play",
+      "detail": "Years of freelance editing and a YouTube channel, back before code took over. I've stopped making them, but the channel and the reel are still up.",
+      "past": true,
+      "archiveLinks": [
+        {
+          "label": "Video editing portfolio",
+          "urlKey": "videoPortfolio"
+        },
+        {
+          "label": "YouTube channel",
+          "urlKey": "youtube"
+        }
+      ]
+    }
+  ],
+  "writing": {
+    "note": "I'm new to writing publicly — a few articles on Medium so far, on technology, learning, and whatever I've been thinking about too hard. More on the way.",
+    "profile": "https://medium.com/@khanswaccho"
+  },
+  "seo": {
+    "siteName": "Swaccho Khan",
+    "description": "Swaccho Khan — AI programmer, web developer and founder of Websthan, a web design and digital marketing agency in Dhaka, Bangladesh. Computer Science undergraduate focused on artificial intelligence and machine learning.",
+    "keywords": "Swaccho Khan, KM Tariful Islam Shoccho, web developer Dhaka, web developer Bangladesh, AI programmer Bangladesh, machine learning Bangladesh, web design agency Dhaka, digital marketing agency Bangladesh, SEO services Dhaka, freelance web developer Bangladesh, website design company Dhaka, Websthan, computer science student Bangladesh",
+    "locale": "en_BD"
+  },
+  "assistant": {
+    "greeting": "Hi — I'm Swaccho's site assistant. Ask me how to reach him, what he works on, or anything else about this site.",
+    "suggestions": [
+      "How do I contact him?",
+      "What does he do?",
+      "What is Websthan?",
+      "Is he available for work?"
+    ]
+  },
+  "book": {
+    "coverEyebrow": "A LIFE IN NINE CHAPTERS",
+    "coverLines": [
+      "AI programmer · Agency founder",
+      "Websthan · Dhaka, Bangladesh"
+    ],
+    "coverHint": "DRAG OR PRESS  →  TO OPEN"
+  }
+}

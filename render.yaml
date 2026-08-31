@@ -1,0 +1,31 @@
+# Render.com blueprint. Import the repo and Render reads this automatically.
+# Set CSRF_SECRET, SMTP_USER and SMTP_PASS in the dashboard — they are secrets.
+services:
+  - type: web
+    name: swacchokhan
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY_HOPS
+        value: "1"
+      - key: CSRF_SECRET
+        generateValue: true
+      - key: CONTACT_TO
+        value: khanswaccho@gmail.com
+      - key: SITE_ORIGIN
+        sync: false
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en-BD">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/ambience') %>
+  <%- include('../partials/icons') %>
+  <%- include('../partials/nav') %>
+
+  <main id="main">
+
+    <!-- ═════════════════════════════════════════════════════════ INTRO ═══ -->
+    <section class="page-head">
+      <div class="shell">
+        <span class="eyebrow" data-reveal>The long version</span>
+        <h1 data-reveal style="--i:1">
+          <span class="grad-text">Nine chapters,</span><br>
+          <span class="serif" style="color:var(--text-2)">one thread running through</span>
+        </h1>
+        <p class="lede" data-reveal style="--i:2">
+          Every skill I have I picked up because I was curious about something, and every one
+          of them fed the next. Here it is in order — a book you can turn, page by page.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════ BOOK ═══ -->
+    <section class="section book-section" id="book" style="padding-top:1rem">
+      <div class="shell">
+        <div class="book-stage" id="book-stage" data-reveal="scale">
+          <canvas id="book-canvas"></canvas>
+          <span class="book-stage__hint" id="book-hint">
+            Drag to turn · ← → keys · scroll to zoom
+          </span>
+          <div class="book-stage__loading" id="book-loading">Binding the pages…</div>
+        </div>
+
+        <div class="book-controls">
+          <div class="book-nav">
+            <button class="book-btn" id="book-prev" type="button" aria-label="Previous chapter" data-cursor="hover">
+              <svg aria-hidden="true"><use href="#i-chev-left"></use></svg>
+            </button>
+            <span class="book-counter" id="book-counter" aria-live="polite">
+              <b>1</b> / <%= profile.chapters.length %>
+            </span>
+            <button class="book-btn" id="book-next" type="button" aria-label="Next chapter" data-cursor="hover">
+              <svg aria-hidden="true"><use href="#i-chev-right"></use></svg>
+            </button>
+          </div>
+
+          <div class="book-index" id="book-index" role="tablist" aria-label="Chapters">
+            <% profile.chapters.forEach(function (c, i) { %>
+              <button
+                class="book-index__dot<%= i === 0 ? ' is-current' : '' %>"
+                type="button"
+                role="tab"
+                data-chapter="<%= i %>"
+                data-cursor="hover"
+                aria-selected="<%= i === 0 ? 'true' : 'false' %>"
+                title="<%= c.title %>"
+              ><%= c.numeral.replace('Chapter ', '') %></button>
+            <% }); %>
+          </div>
+        </div>
+
+        <!-- Chapter data + cover copy for the WebGL renderer. Kept in
+             data/profile.json so the printed cover can't drift from the site. -->
+        <script type="application/json" id="chapters-data"><%- JSON.stringify(profile.chapters) %></script>
+        <script type="application/json" id="book-meta"><%- JSON.stringify({
+          coverEyebrow: profile.book.coverEyebrow,
+          coverLines: profile.book.coverLines,
+          coverHint: profile.book.coverHint,
+          nameLines: profile.identity.name.split(' ')
+        }) %></script>
+
+        <!-- Readable, indexable, no-WebGL version of the same content.
+             Hidden from sight only when the canvas actually initialises. -->
+        <div class="book-fallback" id="book-fallback" style="margin-top:2rem">
+          <h2 class="sr-only">Chapters</h2>
+          <% profile.chapters.forEach(function (c, i) { %>
+            <article class="glass glass--lit card chapter-card" data-spotlight data-reveal style="--i:<%= i % 3 %>">
+              <div class="chapter-card__meta">
+                <span class="chapter-card__numeral"><%= c.numeral %></span>
+                <span class="chapter-card__era"><%= c.era %></span>
+              </div>
+              <h3><%= c.title %></h3>
+              <p class="chapter-card__sub"><%= c.subtitle %></p>
+              <% c.body.forEach(function (para) { %><p><%= para %></p><% }); %>
+              <div class="chip-row" style="margin-top:1.25rem">
+                <% c.tags.forEach(function (t) { %><span class="chip"><%= t %></span><% }); %>
+              </div>
+            </article>
+
+            <% if (c.bridge) { %>
+              <!-- The sentence that carries one chapter into the next. -->
+              <div class="chapter-bridge" data-reveal aria-hidden="false">
+                <span class="chapter-bridge__line" aria-hidden="true"></span>
+                <p class="chapter-bridge__text"><%= c.bridge %></p>
+                <span class="chapter-bridge__line" aria-hidden="true"></span>
+              </div>
+            <% } %>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ TIMELINE ═══ -->
+    <section class="section" id="timeline">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Academics &amp; experience</span>
+          <h2>The same story, in dates</h2>
+          <p class="lede">
+            Education, work and the volunteering in between — most of it overlapping,
+            because it usually was.
+          </p>
+        </div>
+
+        <div class="tl-filter" role="group" aria-label="Filter timeline">
+          <button class="filter-btn is-active" type="button" data-tl-filter="all" data-cursor="hover">
+            All<span class="filter-btn__count"><%= profile.timeline.length %></span>
+          </button>
+          <button class="filter-btn" type="button" data-tl-filter="education" data-cursor="hover">
+            Education<span class="filter-btn__count"><%= profile.timeline.filter(function (t) { return t.kind === 'education'; }).length %></span>
+          </button>
+          <button class="filter-btn" type="button" data-tl-filter="work" data-cursor="hover">
+            Work<span class="filter-btn__count"><%= profile.timeline.filter(function (t) { return t.kind === 'work'; }).length %></span>
+          </button>
+          <button class="filter-btn" type="button" data-tl-filter="volunteer" data-cursor="hover">
+            Volunteering<span class="filter-btn__count"><%= profile.timeline.filter(function (t) { return t.kind === 'volunteer'; }).length %></span>
+          </button>
+        </div>
+
+        <div class="timeline" id="timeline-list">
+          <% profile.timeline.forEach(function (item, idx) { %>
+            <article
+              class="tl-item<%= item.current ? ' is-current' : '' %><%= item.quiet ? ' is-quiet' : '' %>"
+              data-kind="<%= item.kind %>"
+              data-reveal="left"
+              style="--i:<%= Math.min(idx, 6) %>"
+            >
+              <div class="tl-head">
+                <div>
+                  <h3><%= item.title %></h3>
+                  <span class="tl-org"><%= item.org %></span>
+                </div>
+                <span class="tl-period"><%= item.period %></span>
+              </div>
+              <p class="tl-detail"><%= item.detail %></p>
+              <% if (item.highlights) { %>
+                <div class="tl-highlights">
+                  <% item.highlights.forEach(function (h) { %><span class="chip chip--dot"><%= h %></span><% }); %>
+                </div>
+              <% } %>
+            </article>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════ LANGUAGES ═══ -->
+    <section class="section" id="languages">
+      <div class="shell">
+        <div class="glass card" style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;justify-content:space-between" data-reveal>
+          <div>
+            <span class="eyebrow eyebrow--plain">Languages</span>
+            <div class="chip-row" style="margin-top:0.85rem">
+              <% profile.identity.languages.forEach(function (l) { %><span class="chip chip--dot"><%= l %></span><% }); %>
+            </div>
+          </div>
+          <a class="btn btn--ghost btn--sm" href="/portfolio" data-cursor="hover">
+            See the work
+            <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════ CTA ═══ -->
+    <section class="section">
+      <div class="shell">
+        <div class="glass cta" data-reveal="scale">
+          <span class="eyebrow eyebrow--plain" style="justify-content:center">Epilogue</span>
+          <h2 style="margin-top:1rem">The last chapter is a contact form</h2>
+          <p class="lede">
+            If any of that resonates — or you have something worth building — I'd like to hear it.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="/contact" data-cursor="hover" data-magnetic>
+              Get in touch
+              <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('../partials/chat') %>
+  <%- include('../partials/footer') %>
+  <%- include('../partials/scripts') %>
+</body>
+</html>

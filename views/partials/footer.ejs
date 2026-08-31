@@ -1,0 +1,59 @@
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <a class="brand" href="/" data-cursor="hover">
+          <span class="brand__mark" aria-hidden="true"><%= profile.identity.initials %></span>
+          <span><%= profile.identity.name %><span class="brand__sub">AI · Web · Websthan</span></span>
+        </a>
+        <p class="muted" style="margin-top:1.25rem;max-width:38ch;font-size:0.885rem">
+          <%= profile.identity.shortBio %>
+        </p>
+        <div class="social-row" style="margin-top:1.5rem">
+          <a class="social" href="<%= profile.links.github %>" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-cursor="hover">
+            <svg aria-hidden="true"><use href="#i-github"></use></svg>
+          </a>
+          <a class="social" href="<%= profile.links.linkedin %>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-cursor="hover">
+            <svg aria-hidden="true"><use href="#i-linkedin"></use></svg>
+          </a>
+          <a class="social" href="<%= profile.links.medium %>" target="_blank" rel="noopener noreferrer" aria-label="Medium" data-cursor="hover">
+            <svg aria-hidden="true"><use href="#i-medium"></use></svg>
+          </a>
+          <a class="social" href="<%= profile.links.youtube %>" target="_blank" rel="noopener noreferrer" aria-label="YouTube" data-cursor="hover">
+            <svg aria-hidden="true"><use href="#i-youtube"></use></svg>
+          </a>
+          <a class="social" href="mailto:<%= profile.identity.email %>" aria-label="Email" data-cursor="hover">
+            <svg aria-hidden="true"><use href="#i-mail"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Site</h4>
+        <div class="footer__links">
+          <% nav.forEach(function (item) { %>
+            <a href="<%= item.href %>" data-cursor="hover"><%= item.label %></a>
+          <% }); %>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Elsewhere</h4>
+        <div class="footer__links">
+          <a href="<%= profile.links.websthan %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">Websthan ↗</a>
+          <a href="<%= profile.links.github %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">GitHub ↗</a>
+          <a href="<%= profile.links.linkedin %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">LinkedIn ↗</a>
+          <a href="<%= profile.links.medium %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">Medium ↗</a>
+          <a href="<%= profile.links.youtube %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">YouTube ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <%= year %> <%= profile.identity.name %>. Built from scratch.</span>
+      <span><%= profile.identity.location %></span>
+    </div>
+
+    <div class="footer__wordmark" aria-hidden="true">SWACCHO KHAN</div>
+  </div>
+</footer>

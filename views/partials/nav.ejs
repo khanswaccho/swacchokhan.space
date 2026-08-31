@@ -1,0 +1,40 @@
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="/" data-cursor="hover" aria-label="<%= profile.identity.name %> — home">
+      <span class="brand__mark" aria-hidden="true"><%= profile.identity.initials %></span>
+      <span>
+        <%= profile.identity.name %>
+        <span class="brand__sub">AI · Web · Websthan</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" id="nav-links" aria-label="Primary">
+      <span class="nav__pill" id="nav-pill" aria-hidden="true"></span>
+      <% nav.forEach(function (item) { %>
+        <a
+          class="nav__link<%= page === item.key ? ' is-active' : '' %>"
+          href="<%= item.href %>"
+          data-cursor="hover"
+          <%= page === item.key ? 'aria-current="page"' : '' %>
+        ><%= item.label %></a>
+      <% }); %>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn btn--ghost btn--sm" href="<%= profile.links.github %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">
+        <svg aria-hidden="true"><use href="#i-github"></use></svg>
+        GitHub
+      </a>
+      <a class="btn btn--primary btn--sm" href="/contact" data-cursor="hover">
+        Let's talk
+        <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+      </a>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav__progress" id="nav-progress" aria-hidden="true"></div>
+</header>
