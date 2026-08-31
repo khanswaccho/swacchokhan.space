@@ -12,6 +12,12 @@ import { escapeHtml, sanitizeHeaderValue } from './validate.js';
 
 const INBOX_FILE = resolve(process.cwd(), 'data', 'messages.log.jsonl');
 
+/** The site's own hostname, so the emails it sends name the right domain. */
+const siteLabel = () =>
+  (process.env.SITE_ORIGIN || 'swacchokhan.space')
+    .replace(/^https?:\/\//, '')
+    .replace(/\/+$/, '');
+
 let transporter = null;
 let transportReady = false;
 
@@ -41,7 +47,7 @@ function buildHtml({ name, email, subject, message }, meta) {
   };
   return `<!doctype html>
 <div style="font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:640px;margin:0 auto;padding:24px;color:#111">
-  <p style="margin:0 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6b7280">swacchokhan.com — contact form</p>
+  <p style="margin:0 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6b7280">${siteLabel()} — contact form</p>
   <h2 style="margin:0 0 20px;font-size:20px">${safe.subject}</h2>
   <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:20px">
     <tr><td style="padding:6px 0;color:#6b7280;width:96px">From</td><td style="padding:6px 0"><strong>${safe.name}</strong></td></tr>
@@ -54,7 +60,7 @@ function buildHtml({ name, email, subject, message }, meta) {
 
 function buildText({ name, email, subject, message }, meta) {
   return [
-    'swacchokhan.com — contact form',
+    `${siteLabel()} — contact form`,
     '',
     `Subject:  ${subject}`,
     `From:     ${name} <${email}>`,
@@ -93,7 +99,7 @@ export async function sendContactMessage(payload, meta = {}) {
   try {
     await transport.sendMail({
       from: {
-        name: sanitizeHeaderValue(`${payload.name} via swacchokhan.com`),
+        name: sanitizeHeaderValue(`${payload.name} via ${siteLabel()}`),
         address: process.env.SMTP_FROM || process.env.SMTP_USER,
       },
       to,

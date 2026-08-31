@@ -32,7 +32,7 @@ services:
       - key: CSRF_SECRET
         generateValue: true
 
-      # Your canonical domain, no trailing slash — e.g. https://swacchokhan.com
+      # Your canonical domain, no trailing slash — e.g. https://swacchokhan.space
       # Set this once the custom domain is attached, or canonical URLs and the
       # sitemap will point at the .onrender.com subdomain.
       - key: SITE_ORIGIN

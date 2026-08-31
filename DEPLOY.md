@@ -41,19 +41,22 @@ Free tiers change often — check Render's current pricing page before you commi
 
 ## Step 1 — Put the code on GitHub
 
-The repo is already initialised and committed locally. Create an **empty** repo at
-<https://github.com/new> (name it `swacchokhan`, no README, no .gitignore), then:
+The local repo is committed and the remote is already configured. You only need to
+create the empty repo on GitHub:
 
-```bash
-git remote add origin https://github.com/khanswaccho/swacchokhan.git
-```
+1. Open <https://github.com/new?name=swacchokhan.space>
+2. Leave it **Public**. Add **no** README, .gitignore or licence — this repo already
+   has them, and GitHub adding its own would collide on the first push.
+3. Click **Create repository**, then run:
 
 ```bash
 git push -u origin main
 ```
 
+Windows opens a browser window to authorise Git the first time.
+
 Your `.env` is git-ignored, so no secrets leave your machine. Verify with
-`git ls-files | grep .env` — it should only show `.env.example`.
+`git ls-files` — the only env file listed should be `.env.example`.
 
 ---
 
@@ -102,8 +105,8 @@ Use `khanswaccho@gmail.com` as `SMTP_USER` and that 16-character string as
 In Render: **your service → Settings → Custom Domains → Add Custom Domain.**
 
 Add **both**:
-- `swacchokhan.com` (or whatever your domain is)
-- `www.swacchokhan.com`
+- `swacchokhan.space` (or whatever your domain is)
+- `www.swacchokhan.space`
 
 Render then shows you the exact DNS records to create — **an A record value for the
 root domain and a CNAME target for `www`.** Copy those exact values; don't use
@@ -147,7 +150,7 @@ certificate automatically. The Custom Domains page shows a green tick when it's 
 Once the domain resolves, go to **Render → Environment** and set:
 
 ```
-SITE_ORIGIN=https://swacchokhan.com
+SITE_ORIGIN=https://swacchokhan.space
 ```
 
 Then **Manual Deploy → Deploy latest commit**.
@@ -163,12 +166,12 @@ treats them as duplicate sites.
 
 Check these on the real domain:
 
-- [ ] `https://swacchokhan.com` loads and redirects from `http://`
+- [ ] `https://swacchokhan.space` loads and redirects from `http://`
 - [ ] `www` reaches the same site
 - [ ] The 3D book opens on `/journey`
 - [ ] The assistant answers "how do I contact him"
 - [ ] **Send yourself a message through `/contact`** and confirm it arrives in Gmail
-- [ ] `/sitemap.xml` shows `https://swacchokhan.com/...`, not `.onrender.com`
+- [ ] `/sitemap.xml` shows `https://swacchokhan.space/...`, not `.onrender.com`
 - [ ] Paste the URL into <https://www.linkedin.com/post-inspector/> — the preview
       card should show your name over the gradient
 
@@ -178,10 +181,10 @@ Check these on the real domain:
 
 This is the part that actually decides whether anyone in Bangladesh finds you.
 
-1. <https://search.google.com/search-console> → add `https://swacchokhan.com` as a
+1. <https://search.google.com/search-console> → add `https://swacchokhan.space` as a
    **Domain** property. It asks for a TXT record — add it in the same Hostinger DNS
    page as before.
-2. **Sitemaps → Submit** `https://swacchokhan.com/sitemap.xml`
+2. **Sitemaps → Submit** `https://swacchokhan.space/sitemap.xml`
 3. **URL Inspection** on the homepage → **Request indexing**.
 4. Add the site to your LinkedIn profile and your GitHub profile README, and link it
    from `websthan.online`. Real inbound links move Bangladesh rankings far more than

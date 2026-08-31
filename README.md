@@ -86,7 +86,7 @@ annotated list. The ones that matter:
 | Variable | Why |
 |---|---|
 | `CSRF_SECRET` | **Required in production.** ≥32 chars. Without it a random secret is generated at boot and every existing form token is invalidated on restart. |
-| `SITE_ORIGIN` | Canonical public origin, no trailing slash (e.g. `https://swacchokhan.com`). Drives canonical URLs, the sitemap and absolute social-preview links. Set it in production. |
+| `SITE_ORIGIN` | Canonical public origin, no trailing slash (e.g. `https://swacchokhan.space`). Drives canonical URLs, the sitemap and absolute social-preview links. Set it in production. |
 | `SMTP_HOST` / `SMTP_USER` / `SMTP_PASS` | Contact-form delivery. Leave empty and messages are appended to `data/messages.log.jsonl` instead — the form still works and nothing is lost. |
 | `CONTACT_TO` | Where messages are sent. Defaults to `khanswaccho@gmail.com`. |
 | `GITHUB_TOKEN` | Optional. A token with **no scopes** raises the GitHub API limit from 60/hr to 5000/hr. Server-side only — it never reaches the browser. |

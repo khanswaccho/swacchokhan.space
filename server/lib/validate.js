@@ -82,7 +82,7 @@ export function validateContact(body = {}) {
     data: {
       name,
       email,
-      subject: subject || 'New message from swacchokhan.com',
+      subject: subject || 'New message from the portfolio site',
       message,
     },
   };
