@@ -566,49 +566,6 @@
   }
 }
 
-/* =============================================================== STATS === */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.stat {
-  padding: 1.7rem 1.5rem;
-  text-align: left;
-}
-
-.stat__value {
-  display: block;
-  font-size: clamp(1.85rem, 1.4rem + 1.6vw, 2.6rem);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 1;
-  background: var(--grad-text);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 0.7rem;
-  animation: shimmer 11s linear infinite;
-}
-
-.stat__label {
-  display: block;
-  font-size: 0.88rem;
-  color: var(--text-1);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-}
-
-.stat__detail {
-  display: block;
-  font-size: 0.775rem;
-  color: var(--text-4);
-  margin-top: 0.4rem;
-  line-height: 1.55;
-}
-
 /* =============================================================== SKILLS == */
 .skills-grid {
   display: grid;
@@ -860,38 +817,16 @@
   font-weight: 600;
 }
 
-/* Accessible / no-WebGL chapter reader — also what search engines index. */
+/* The written chapters. Always visible — this is the page's real content, and
+   search engines discount text that is hidden behind a clip rect. The 3D book
+   is the presentation of it, not a replacement for it. */
 .book-fallback {
   display: grid;
   gap: 1rem;
+  margin-top: clamp(2rem, 5vw, 3rem);
 }
 
-.book-stage[data-webgl='on'] + .book-fallback {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* On a phone a two-page spread is far too small to read, so the book stays as
-   the visual and the written chapters come back as the way you actually read
-   them. Same content, sized for the screen it's on. */
 @media (max-width: 720px) {
-  .book-stage[data-webgl='on'] + .book-fallback {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-  }
-
   #book-canvas {
     height: clamp(320px, 46vh, 420px);
   }
@@ -943,50 +878,9 @@
 }
 
 /* ── the connective tissue between chapters ──────────────────────────────── */
-.chapter-bridge {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 1.35rem;
-  padding-block: 0.35rem;
-}
 
-.chapter-bridge__line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(124, 92, 255, 0.42));
-}
 
-.chapter-bridge__line:last-child {
-  background: linear-gradient(90deg, rgba(34, 211, 238, 0.42), transparent);
-}
 
-.chapter-bridge__text {
-  font-family: var(--font-serif);
-  font-size: clamp(1rem, 0.94rem + 0.4vw, 1.22rem);
-  font-style: italic;
-  letter-spacing: -0.012em;
-  color: var(--text-3);
-  text-align: center;
-  max-width: 46ch;
-  line-height: 1.5;
-}
-
-@media (max-width: 640px) {
-  .chapter-bridge {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-    justify-items: center;
-  }
-
-  .chapter-bridge__line {
-    width: 46px;
-    background: linear-gradient(90deg, transparent, rgba(124, 92, 255, 0.45), transparent);
-  }
-
-  .chapter-bridge__line:last-child {
-    background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.45), transparent);
-  }
-}
 
 /* ============================================================ TIMELINE === */
 .timeline {
@@ -1615,25 +1509,7 @@
   border-color: rgba(34, 211, 238, 0.4);
 }
 
-.security-note {
-  display: flex;
-  gap: 0.8rem;
-  padding: 1.15rem 1.25rem;
-  border-radius: var(--radius);
-  background: rgba(52, 211, 153, 0.045);
-  border: 1px solid rgba(52, 211, 153, 0.16);
-  font-size: 0.795rem;
-  line-height: 1.65;
-  color: var(--text-3);
-}
 
-.security-note svg {
-  width: 17px;
-  height: 17px;
-  flex: none;
-  color: #34d399;
-  margin-top: 2px;
-}
 
 @media (max-width: 900px) {
   .contact-layout {

@@ -3,16 +3,16 @@
     "name": "Swaccho Khan",
     "legalName": "KM Tariful Islam Shoccho",
     "initials": "SK",
-    "headline": "AI Programmer & Agency Founder in Dhaka",
+    "headline": "AI Programmer & Web Developer in Dhaka",
     "roles": [
       "AI & ML programmer",
       "web developer",
-      "founder of Websthan",
+      "co-founder of Websthan",
       "computer science undergrad"
     ],
     "tagline": "I build with code, learn machines, and ship the web.",
-    "positioning": "I'm a computer science undergraduate in Dhaka who lives in the terminal. My days go into learning AI and machine learning properly — from the maths up — and into running Websthan, the agency I founded, where I lead the tech team, set the business strategy and look after clients. Everything I do comes back to the same instinct: take a thing apart, understand it, then build it better.",
-    "shortBio": "Computer Science undergraduate based in Dhaka, Bangladesh. I write code, study machine learning, and run Websthan — a web design and digital marketing agency where I lead the tech team and handle clients.",
+    "positioning": "I'm a computer science undergraduate in Dhaka who lives in the terminal. My days go into learning AI and machine learning properly — from the maths up — and into Websthan, the agency I co-founded, where I lead the tech team and work on strategy and clients. Everything I do comes back to the same instinct: take a thing apart, understand it, then build it better.",
+    "shortBio": "Computer Science undergraduate based in Dhaka, Bangladesh. I write code, study machine learning, and help run Websthan — a web design and digital marketing agency I co-founded, where I lead the tech team.",
     "location": "Dhaka, Bangladesh",
     "locality": "Dhaka",
     "region": "Dhaka Division",
@@ -62,14 +62,14 @@
       "primary": true,
       "eyebrow": "What I run",
       "title": "Websthan",
-      "summary": "The web design and digital marketing agency I founded and run from Dhaka. I lead the tech team, set the business strategy, and stay the point of contact for our clients — so the work has to be right technically and commercially.",
+      "summary": "The web design and digital marketing agency I co-founded in Dhaka. I lead the tech team, work on business strategy with my co-founder, and stay close to our clients — so the work has to be right technically and commercially.",
       "points": [
-        "Lead and manage the tech team — delegation, code standards, delivery",
-        "Set business strategy: positioning, pricing, which work we take on",
-        "Own client relationships end to end, from first brief to long after launch",
+        "Lead the tech team — delegation, code standards, delivery",
+        "Shape business strategy alongside my co-founder",
+        "Work with clients from first brief to long after launch",
         "Still build: front-end engineering, deployment, SEO and performance"
       ],
-      "state": "Founder — leads the team",
+      "state": "Co-founder & tech lead",
       "link": "https://websthan.online",
       "linkLabel": "websthan.online",
       "icon": "orbit"
@@ -230,7 +230,6 @@
         "It started the way it starts for a lot of people: a computer, and games I wasn't supposed to be playing. Then the internet arrived properly, and the machine stopped being a toy and became a door.",
         "I was an active, loud child everywhere except in one place — with a book. Reading alone did something to me that nothing else did. It handed me other people's perspectives and quietly built the way I think."
       ],
-      "bridge": "The door opened onto a question: what could I actually make with this thing?",
       "tags": [
         "curiosity",
         "reading",
@@ -246,7 +245,6 @@
         "The answer, for a while, was video. Editing was the first skill I taught myself off the internet, and it turned into freelance work and then a YouTube channel that changed more than I expected.",
         "It taught me to write a script, hold an audience and say a thing clearly. I don't do it any more — the channel and the edits are an archive now — but somewhere in all that timeline-scrubbing I noticed the software was more interesting to me than the footage."
       ],
-      "bridge": "So I put the timeline down and picked up a syllabus.",
       "tags": [
         "video editing",
         "youtube",
@@ -263,7 +261,6 @@
         "Twelve years at one school, ending with O-Levels that went well. I was vice-president of the basketball club, volunteered for every school function I could find, and won a fair share of school tournaments along the way.",
         "Then I went back to the same school on the other side of the desk — teaching physics and chemistry, writing lesson plans and learning the thing that has stuck with me longest: you don't really understand something until you have to explain it."
       ],
-      "bridge": "Explaining things well turned out to be portable. So did leaving home.",
       "tags": [
         "o-levels",
         "basketball VP",
@@ -279,7 +276,6 @@
         "I moved abroad for a Foundation in Science and finished my last semester on a 3.68 CGPA. Physics, chemistry, mathematics, computing — and a much harder syllabus in living alone in a country that wasn't mine.",
         "I joined the Student Representative Council, campaigned in the 2024 presidential election, helped run the university orientation, volunteered on donation drives and tree-planting, and coordinated the Career to Campus fair. I also worked evening shifts to pay for it. It was a full year."
       ],
-      "bridge": "A full year, and still not enough. I wanted something that was mine.",
       "tags": [
         "CGPA 3.68",
         "student council",
@@ -296,7 +292,6 @@
         "So alongside the studying in Malaysia I started my own small e-commerce selling cosmetic products. I ran all of it myself: sourcing, marketing, sales, customer messages, the lot.",
         "It taught me the unglamorous half of building things — setting a goal, measuring whether you actually hit it, and making the next decision from data rather than from hope. When the foundation programme ended I closed it down and flew home."
       ],
-      "bridge": "Home in Bangladesh, with a year of hard lessons and nothing yet to spend them on.",
       "tags": [
         "e-commerce",
         "marketing",
@@ -313,7 +308,6 @@
         "Reading eventually turned into writing. I've published a handful of articles on Medium so far — I'm a beginner at this and I'd rather say so than pretend otherwise.",
         "But it's already the sharpest thinking tool I own. If I can't write an idea down clearly, I've found I don't understand it yet. That test has saved me more times in code than it has in prose."
       ],
-      "bridge": "And what I most wanted to explain clearly was the thing I was building.",
       "tags": [
         "medium",
         "beginner writer",
@@ -326,14 +320,13 @@
       "title": "Websthan",
       "subtitle": "websthan.online · an agency in Dhaka",
       "body": [
-        "Websthan is the agency I founded in Dhaka: web design and digital marketing. It stopped being a one-man operation quickly — now I lead the tech team, decide the business strategy, and stay the person clients actually talk to.",
-        "In the same stretch I started teaching IELTS at Delta Academy and was named their Best Mentor. Running a team, keeping a client happy and teaching a class turn out to use the same muscle: understand the person in front of you, then deliver."
+        "Websthan is the agency a friend and I started in Dhaka: web design and digital marketing. I took the technical side — I lead the tech team, and I am still the person clients talk to about what we are building.",
+        "In the same stretch I started teaching IELTS at Delta Academy and was named their Best Mentor. Building something with someone else, keeping a client happy and teaching a class turn out to use the same muscle: understand the person in front of you, then deliver."
       ],
-      "bridge": "Delivering well got easier. Then I found the problem I actually wanted to spend years on.",
       "tags": [
-        "founder",
+        "co-founder",
         "tech lead",
-        "team management",
+        "team",
         "business strategy"
       ]
     },
@@ -346,7 +339,6 @@
         "I'm now reading Computer Science & Engineering, and my focus has narrowed to one thing: artificial intelligence and machine learning. Not as a buzzword — as mathematics I want to actually hold in my head.",
         "Python, the fundamentals of neural networks, the linear algebra and statistics underneath them, and the engineering discipline to turn a working notebook into something people can use. Cybersecurity sits next to it as the discipline that keeps what I build honest."
       ],
-      "bridge": "Which brings the whole thing up to today.",
       "tags": [
         "AI",
         "machine learning",
@@ -387,12 +379,12 @@
     },
     {
       "period": "2025 — Present",
-      "title": "Founder & Tech Lead",
+      "title": "Co-founder & Tech Lead",
       "org": "Websthan — websthan.online",
       "kind": "work",
       "current": true,
       "featured": true,
-      "detail": "Founded and run a web design and digital marketing agency in Dhaka. Manage the team, set business strategy, lead technical delivery and own client relationships — while still building on the front end.",
+      "detail": "Co-founded a web design and digital marketing agency in Dhaka with a friend. Lead technical delivery and the tech team, contribute to business strategy, and work directly with clients — while still building on the front end.",
       "highlights": [
         "Team & delivery management",
         "Business strategy",
@@ -544,7 +536,7 @@
   },
   "seo": {
     "siteName": "Swaccho Khan",
-    "description": "Swaccho Khan — AI programmer, web developer and founder of Websthan, a web design and digital marketing agency in Dhaka, Bangladesh. Computer Science undergraduate focused on artificial intelligence and machine learning.",
+    "description": "Swaccho Khan — AI programmer and web developer in Dhaka, Bangladesh. Computer Science undergraduate focused on artificial intelligence and machine learning, and co-founder of Websthan, a web design and digital marketing agency.",
     "keywords": "Swaccho Khan, KM Tariful Islam Shoccho, web developer Dhaka, web developer Bangladesh, AI programmer Bangladesh, machine learning Bangladesh, web design agency Dhaka, digital marketing agency Bangladesh, SEO services Dhaka, freelance web developer Bangladesh, website design company Dhaka, Websthan, computer science student Bangladesh",
     "locale": "en_BD"
   },
@@ -560,8 +552,8 @@
   "book": {
     "coverEyebrow": "A LIFE IN NINE CHAPTERS",
     "coverLines": [
-      "AI programmer · Agency founder",
-      "Websthan · Dhaka, Bangladesh"
+      "AI programmer · Web developer",
+      "Co-founder of Websthan · Dhaka"
     ],
     "coverHint": "DRAG OR PRESS  →  TO OPEN"
   }

@@ -10,7 +10,7 @@
 
   <main id="main">
 
-    <!-- ═════════════════════════════════════════════════════════ INTRO ═══ -->
+    <%# ═════════════════════════════════════════════════════════ INTRO ═══ %>
     <section class="page-head">
       <div class="shell">
         <span class="eyebrow" data-reveal>The long version</span>
@@ -25,7 +25,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════════ BOOK ═══ -->
+    <%# ══════════════════════════════════════════════════════════ BOOK ═══ %>
     <section class="section book-section" id="book" style="padding-top:1rem">
       <div class="shell">
         <div class="book-stage" id="book-stage" data-reveal="scale">
@@ -64,8 +64,8 @@
           </div>
         </div>
 
-        <!-- Chapter data + cover copy for the WebGL renderer. Kept in
-             data/profile.json so the printed cover can't drift from the site. -->
+        <%# Chapter data + cover copy for the WebGL renderer. Kept in
+             data/profile.json so the printed cover can't drift from the site. %>
         <script type="application/json" id="chapters-data"><%- JSON.stringify(profile.chapters) %></script>
         <script type="application/json" id="book-meta"><%- JSON.stringify({
           coverEyebrow: profile.book.coverEyebrow,
@@ -74,9 +74,9 @@
           nameLines: profile.identity.name.split(' ')
         }) %></script>
 
-        <!-- Readable, indexable, no-WebGL version of the same content.
-             Hidden from sight only when the canvas actually initialises. -->
-        <div class="book-fallback" id="book-fallback" style="margin-top:2rem">
+        <%# The written chapters. Always visible: this is the page's real content and
+             what search engines index. The book above is how it is presented. %>
+        <div class="book-fallback" id="book-fallback">
           <h2 class="sr-only">Chapters</h2>
           <% profile.chapters.forEach(function (c, i) { %>
             <article class="glass glass--lit card chapter-card" data-spotlight data-reveal style="--i:<%= i % 3 %>">
@@ -92,20 +92,12 @@
               </div>
             </article>
 
-            <% if (c.bridge) { %>
-              <!-- The sentence that carries one chapter into the next. -->
-              <div class="chapter-bridge" data-reveal aria-hidden="false">
-                <span class="chapter-bridge__line" aria-hidden="true"></span>
-                <p class="chapter-bridge__text"><%= c.bridge %></p>
-                <span class="chapter-bridge__line" aria-hidden="true"></span>
-              </div>
-            <% } %>
           <% }); %>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════ TIMELINE ═══ -->
+    <%# ══════════════════════════════════════════════════════ TIMELINE ═══ %>
     <section class="section" id="timeline">
       <div class="shell">
         <div class="section-head" data-reveal>
@@ -159,7 +151,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════ LANGUAGES ═══ -->
+    <%# ══════════════════════════════════════════════════════ LANGUAGES ═══ %>
     <section class="section" id="languages">
       <div class="shell">
         <div class="glass card" style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;justify-content:space-between" data-reveal>
@@ -177,7 +169,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════════ CTA ═══ -->
+    <%# ══════════════════════════════════════════════════════════ CTA ═══ %>
     <section class="section">
       <div class="shell">
         <div class="glass cta" data-reveal="scale">

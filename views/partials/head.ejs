@@ -10,7 +10,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="<%= canonical %>">
 
-<!-- Geographic targeting — Bangladesh -->
+<%# Geographic targeting — Bangladesh %>
 <meta name="geo.region" content="<%= profile.identity.regionCode %>">
 <meta name="geo.placename" content="<%= profile.identity.locality %>, <%= profile.identity.country %>">
 <meta name="geo.position" content="<%= profile.identity.geo.lat %>;<%= profile.identity.geo.lon %>">
@@ -18,7 +18,7 @@
 <link rel="alternate" hreflang="en-bd" href="<%= canonical %>">
 <link rel="alternate" hreflang="x-default" href="<%= canonical %>">
 
-<!-- Open Graph / social -->
+<%# Open Graph / social %>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="<%= profile.seo.siteName %>">
 <meta property="og:title" content="<%= title %>">
@@ -33,7 +33,7 @@
 <meta name="twitter:description" content="<%= description %>">
 <meta name="twitter:image" content="<%= origin %>/img/og.jpg">
 
-<!-- CSRF: read by public/js/contact.js for the fetch header -->
+<%# CSRF: read by public/js/contact.js for the fetch header %>
 <meta name="csrf-token" content="<%= csrfToken %>">
 <meta name="csrf-header" content="<%= csrfHeader %>">
 
@@ -44,7 +44,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
 >
 
 <link rel="stylesheet" href="/css/base.css">
@@ -117,9 +117,10 @@
       '@type': 'ProfessionalService',
       '@id': origin + '/#websthan',
       name: 'Websthan',
-      description: 'Web design and digital marketing studio founded by ' + profile.identity.name + ', based in ' + profile.identity.location + '.',
+      description: 'Web design and digital marketing agency co-founded by ' + profile.identity.name + ', based in ' + profile.identity.location + '.',
       url: profile.links.websthan,
       founder: { '@id': origin + '/#person' },
+      employee: { '@id': origin + '/#person' },
       email: 'mailto:' + profile.identity.email,
       priceRange: '$$',
       address: {

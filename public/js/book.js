@@ -37,9 +37,14 @@ if (stage && canvas && dataEl) {
 
 /* ══════════════════════════════════════════════════ page texture painting ══ */
 
-// 3:4 — matches the page mesh exactly, so nothing is stretched.
+// 3:4 — matches the page mesh exactly, so nothing is stretched. Sized for how
+// large a page actually renders (~300-500 CSS px), not for print.
 const PAGE_W = 1200;
 const PAGE_H = 1600;
+
+// Painted at 0.75 of the design size. A page renders at roughly 300-500 CSS px,
+// so this is still oversampled on a 2x display, at 44% of the texture memory.
+const TEXTURE_SCALE = 0.75;
 
 const COLORS = {
   paper: '#0d1120',
@@ -53,8 +58,9 @@ const COLORS = {
 
 function makeCanvas() {
   const c = document.createElement('canvas');
-  c.width = PAGE_W;
-  c.height = PAGE_H;
+  c.width = Math.round(PAGE_W * TEXTURE_SCALE);
+  c.height = Math.round(PAGE_H * TEXTURE_SCALE);
+  c.getContext('2d').scale(TEXTURE_SCALE, TEXTURE_SCALE);
   return c;
 }
 
@@ -69,7 +75,7 @@ function paintBase(ctx, { gutter = 'left' } = {}) {
   // Fibre speckle so the paper isn't a dead flat fill.
   ctx.save();
   ctx.globalAlpha = 0.035;
-  for (let i = 0; i < 2600; i++) {
+  for (let i = 0; i < 1400; i++) {
     ctx.fillStyle = Math.random() > 0.5 ? '#ffffff' : '#000000';
     ctx.fillRect(Math.random() * PAGE_W, Math.random() * PAGE_H, 1.4, 1.4);
   }
@@ -195,7 +201,7 @@ function paintCover(meta) {
   ctx.stroke();
 
   ctx.fillStyle = COLORS.inkSoft;
-  ctx.font = '400 42px "Sora", sans-serif';
+  ctx.font = '400 43px "Sora", sans-serif';
   meta.coverLines.forEach((line, i) => ctx.fillText(line, PAGE_W / 2, 910 + i * 65));
 
   ctx.fillStyle = COLORS.inkFaint;
@@ -300,7 +306,7 @@ function paintChapterRight(chapter, index, total) {
   const maxW = PAGE_W - M - 140;
   const top = 250;
   // Reserve room at the foot of the page for whatever follows the body copy.
-  const bottom = PAGE_H - (chapter.isFinal ? 340 : chapter.bridge ? 440 : 190);
+  const bottom = PAGE_H - (chapter.isFinal ? 340 : 190);
 
   ctx.textAlign = 'left';
   ctx.textBaseline = 'alphabetic';
@@ -342,21 +348,6 @@ function paintChapterRight(chapter, index, total) {
     ctx.letterSpacing = '4px';
     ctx.fillText('KHANSWACCHO@GMAIL.COM', M, y + 110);
     ctx.letterSpacing = '0px';
-  } else if (chapter.bridge) {
-    // The line that hands this chapter to the next one — set apart from the
-    // body, at the foot of the page, the way a pull quote would be.
-    const bridgeTop = Math.max(y + 70, PAGE_H - 400);
-
-    ctx.strokeStyle = 'rgba(124,92,255,0.4)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(M, bridgeTop);
-    ctx.lineTo(M + 110, bridgeTop);
-    ctx.stroke();
-
-    ctx.fillStyle = COLORS.violet;
-    ctx.font = 'italic 400 40px "Instrument Serif", Georgia, serif';
-    wrapText(ctx, chapter.bridge, M, bridgeTop + 78, maxW, 56);
   }
 
   // Progress rail down the outer edge — where you are in the book.
@@ -382,6 +373,13 @@ function paintChapterRight(chapter, index, total) {
   ctx.textAlign = 'right';
   ctx.fillText(String(index * 2 + 2).padStart(2, '0'), PAGE_W - M, PAGE_H - 105);
 
+  return c;
+}
+
+/** Bare stock, shown on a sheet whose face hasn't been painted yet. */
+function paintBlank() {
+  const c = makeCanvas();
+  paintBase(c.getContext('2d'), { gutter: 'left' });
   return c;
 }
 
@@ -460,15 +458,45 @@ async function start(chapters, meta = {}) {
     return t;
   };
 
-  // Face 0 = cover; then for each chapter: [left, right].
-  const faces = [toTexture(paintCover(meta))];
-  chapters.forEach((ch, i) => {
-    faces.push(toTexture(paintChapterLeft(ch, i, chapters.length)));
-    faces.push(toTexture(paintChapterRight(ch, i, chapters.length)));
-  });
-  faces.push(toTexture(paintEndPaper('THE END · FOR NOW')));
-
   const SHEETS = chapters.length + 1;
+  const FACE_COUNT = SHEETS * 2;
+
+  /**
+   * Faces are painted on demand rather than all at once.
+   *
+   * Face 0 is the cover; after that each chapter contributes [left, right].
+   * Painting all twenty up front cost a visible stall and held twenty
+   * full-page canvases in GPU memory before the reader had turned anything.
+   * Now only the spread you can see is guaranteed; the rest arrive in idle
+   * time, and every sheet shows blank paper until its own face is ready.
+   */
+  const paintFace = (f) => {
+    if (f === 0) return paintCover(meta);
+    const chapterIndex = Math.floor((f - 1) / 2);
+    if (chapterIndex >= chapters.length) return paintEndPaper('THE END · FOR NOW');
+    return (f - 1) % 2 === 0
+      ? paintChapterLeft(chapters[chapterIndex], chapterIndex)
+      : paintChapterRight(chapters[chapterIndex], chapterIndex, chapters.length);
+  };
+
+  const blankTexture = toTexture(paintBlank());
+  const faces = new Array(FACE_COUNT).fill(null);
+
+  /** Paints face `f` if it isn't already, and swaps it onto its sheet. */
+  function ensureFace(f) {
+    if (f < 0 || f >= FACE_COUNT || faces[f]) return;
+    faces[f] = toTexture(paintFace(f));
+    const sheet = sheets[Math.floor(f / 2)];
+    if (!sheet) return;
+    const mat = f % 2 === 0 ? sheet.frontMat : sheet.backMat;
+    mat.uniforms.uMap.value = faces[f];
+    mat.needsUpdate = true;
+  }
+
+  /** Both faces of the spread shown at turn state `t`, plus its neighbours. */
+  function ensureSpread(t) {
+    [t * 2 - 1, t * 2, t * 2 + 1, t * 2 + 2, t * 2 - 2].forEach(ensureFace);
+  }
 
   /* -- geometry & material ----------------------------------------------- */
   // Hinged at x = 0 so the group can rotate about the spine.
@@ -535,8 +563,9 @@ async function start(chapters, meta = {}) {
   for (let i = 0; i < SHEETS; i++) {
     const group = new THREE.Group();
 
-    const frontTex = faces[i * 2] || faces[faces.length - 1];
-    const backTex = faces[i * 2 + 1] || faces[faces.length - 1];
+    // Blank paper until ensureFace() swaps the painted texture in.
+    const frontTex = faces[i * 2] || blankTexture;
+    const backTex = faces[i * 2 + 1] || blankTexture;
 
     // Two materials sharing one geometry — face culling means only one of the
     // pair is ever rasterised, so there is no z-fighting between them.
@@ -643,9 +672,27 @@ async function start(chapters, meta = {}) {
       sheet.elapsed = 0;
     });
 
+    // Paint what's about to be on screen before the turn finishes.
+    ensureSpread(turned);
+
     if (hintEl) hintEl.classList.add('is-hidden');
     syncUI();
   }
+
+  // The cover and the first spread are needed straight away; everything else
+  // is painted in idle time so the book appears without a stall.
+  ensureSpread(0);
+  ensureSpread(1);
+
+  const idle = window.requestIdleCallback || ((fn) => window.setTimeout(fn, 120));
+  let nextFace = 0;
+  const paintRest = () => {
+    while (nextFace < FACE_COUNT && faces[nextFace]) nextFace++;
+    if (nextFace >= FACE_COUNT) return;
+    ensureFace(nextFace);
+    idle(paintRest);
+  };
+  idle(paintRest);
 
   syncUI();
 

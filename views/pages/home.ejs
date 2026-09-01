@@ -10,7 +10,7 @@
 
   <main id="main">
 
-    <!-- ═══════════════════════════════════════════════════════════ HERO ═══ -->
+    <%# ═══════════════════════════════════════════════════════════ HERO ═══ %>
     <section class="hero" id="hero">
       <canvas id="hero-canvas" aria-hidden="true"></canvas>
       <canvas id="trail-canvas" aria-hidden="true"></canvas>
@@ -30,13 +30,17 @@
 
           <p class="hero__role">
             <span class="hero__role-prefix">const role =</span>
-            <span class="hero__role-word" id="role-word">AI &amp; ML programmer</span><span class="hero__caret" aria-hidden="true"></span>
+            <span
+              class="hero__role-word"
+              id="role-word"
+              data-roles="<%= JSON.stringify(profile.identity.roles) %>"
+            ><%= profile.identity.roles[0] %></span><span class="hero__caret" aria-hidden="true"></span>
           </p>
 
           <p class="lede hero__lede">
             I'm a computer science undergraduate teaching myself machine learning from the
             maths up, and running <a class="link-underline" href="<%= profile.links.websthan %>" target="_blank" rel="noopener noreferrer" data-cursor="hover">Websthan</a>
-            — the web design and digital marketing agency I founded and lead. Everything I make starts
+            — the web design and digital marketing agency I co-founded, where I lead the tech team. Everything I make starts
             the same way: <em>take it apart, understand it, build it better.</em>
           </p>
 
@@ -122,7 +126,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════ MARQUEE ═══ -->
+    <%# ══════════════════════════════════════════════════════ MARQUEE ═══ %>
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
         <% for (let pass = 0; pass < 2; pass++) { %>
@@ -133,7 +137,7 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════════════════ NOW ═══ -->
+    <%# ══════════════════════════════════════════════════════════ NOW ═══ %>
     <section class="section" style="padding-block:clamp(3rem,7vh,5rem)">
       <div class="shell">
         <dl class="now-strip" data-reveal>
@@ -153,7 +157,7 @@
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════ FOCUS ═══ -->
+    <%# ════════════════════════════════════════════════════════ FOCUS ═══ %>
     <section class="section" id="focus">
       <div class="shell">
         <div class="section-head" data-reveal>
@@ -206,7 +210,7 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════ SKILLS ═══ -->
+    <%# ═══════════════════════════════════════════════════════ SKILLS ═══ %>
     <section class="section" id="skills">
       <div class="shell">
         <div class="section-head" data-reveal>
@@ -237,7 +241,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════ JOURNEY ═══ -->
+    <%# ══════════════════════════════════════════════════════ JOURNEY ═══ %>
     <section class="section" id="journey-teaser">
       <div class="shell">
         <div class="glass feature" data-reveal="scale">
@@ -271,7 +275,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════ HOBBIES ═══ -->
+    <%# ══════════════════════════════════════════════════════ HOBBIES ═══ %>
     <section class="section" id="hobbies">
       <div class="shell">
         <div class="section-head" data-reveal>
@@ -314,7 +318,7 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════════ CTA ═══ -->
+    <%# ══════════════════════════════════════════════════════════ CTA ═══ %>
     <section class="section">
       <div class="shell">
         <div class="glass cta" data-reveal="scale">

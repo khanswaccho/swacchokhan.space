@@ -3,6 +3,10 @@
    Cursor, navigation, scroll reveal, tilt, spotlight, magnetics, filters.
    ========================================================================== */
 
+// Flag the document before first paint. The reveal styles key off this, so
+// content stays visible for crawlers and no-JS visitors.
+document.documentElement.classList.add('js');
+
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
@@ -262,13 +266,15 @@ function initRoleRotator() {
   const el = document.getElementById('role-word');
   if (!el) return;
 
-  const roles = [
-    'AI & ML programmer',
-    'web developer',
-    'founder of Websthan',
-    'writer on Medium',
-    'computer science undergrad',
-  ];
+  // Authored in data/profile.json and handed over on the element, so this list
+  // can't drift from the rest of the site.
+  let roles = [];
+  try {
+    roles = JSON.parse(el.dataset.roles || '[]');
+  } catch {
+    roles = [];
+  }
+  if (!roles.length) roles = [el.textContent.trim()];
 
   if (reduceMotion) {
     el.textContent = roles[0];
@@ -302,44 +308,6 @@ function initRoleRotator() {
     deleting = true;
     tick();
   }, 2600);
-}
-
-/* --------------------------------------------------------- stat counters -- */
-function initCounters() {
-  const stats = document.querySelectorAll('[data-count]');
-  if (!stats.length || reduceMotion || !('IntersectionObserver' in window)) return;
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        io.unobserve(el);
-
-        const raw = el.dataset.count || '';
-        const match = raw.match(/^(\d+(?:\.\d+)?)(.*)$/);
-        if (!match) return; // non-numeric values ("Best Mentor") stay as-is
-
-        const target = parseFloat(match[1]);
-        const suffix = match[2] || '';
-        const decimals = (match[1].split('.')[1] || '').length;
-        const duration = 1150;
-        const start = performance.now();
-
-        const step = (now) => {
-          const t = clamp((now - start) / duration, 0, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          el.textContent = (target * eased).toFixed(decimals) + suffix;
-          if (t < 1) requestAnimationFrame(step);
-          else el.textContent = raw;
-        };
-        requestAnimationFrame(step);
-      });
-    },
-    { threshold: 0.6 }
-  );
-
-  stats.forEach((el) => io.observe(el));
 }
 
 /* ------------------------------------------------------ timeline filter --- */
@@ -445,7 +413,6 @@ function boot() {
   initTilt();
   initMagnetic();
   initRoleRotator();
-  initCounters();
   initTimelineFilter();
   initPortrait();
   initCopyEmail();

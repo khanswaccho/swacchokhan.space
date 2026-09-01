@@ -405,7 +405,10 @@ kbd {
 
 .grain {
   position: fixed;
-  inset: -200%;
+  /* The shift animation moves this by at most 3%, so a small bleed is all it
+     needs. At -200% the compositor layer was 25x the viewport — hundreds of
+     megabytes of texture on a large screen, for a grain overlay. */
+  inset: -6%;
   z-index: -1;
   pointer-events: none;
   opacity: 0.032;
@@ -481,7 +484,11 @@ kbd {
 }
 
 /* --------------------------------------------------- scroll reveal system -- */
-[data-reveal] {
+/* Content is visible by default and only hidden once JS has confirmed it can
+   reveal it again (main.js puts `.js` on <html> immediately). Hiding first and
+   revealing later means any renderer that doesn't run the IntersectionObserver
+   — a crawler, a reader mode, a failed script — sees an empty page. */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(30px);
   transition:
@@ -491,12 +498,12 @@ kbd {
   will-change: opacity, transform;
 }
 
-[data-reveal='left'] { transform: translateX(-38px); }
-[data-reveal='right'] { transform: translateX(38px); }
-[data-reveal='scale'] { transform: scale(0.94); }
-[data-reveal='blur'] { filter: blur(9px); transform: translateY(20px); }
+.js [data-reveal='left'] { transform: translateX(-38px); }
+.js [data-reveal='right'] { transform: translateX(38px); }
+.js [data-reveal='scale'] { transform: scale(0.94); }
+.js [data-reveal='blur'] { filter: blur(9px); transform: translateY(20px); }
 
-[data-reveal].is-visible {
+.js [data-reveal].is-visible {
   opacity: 1;
   transform: none;
   filter: none;
@@ -534,7 +541,7 @@ kbd {
     scroll-behavior: auto !important;
   }
 
-  [data-reveal],
+  .js [data-reveal],
   .split-char {
     opacity: 1 !important;
     transform: none !important;
