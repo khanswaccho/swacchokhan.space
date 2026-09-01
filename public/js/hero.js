@@ -6,7 +6,7 @@
    can push around. Degrades to nothing (no error, no gap) without WebGL.
    ========================================================================== */
 
-import * as THREE from '/vendor/three.module.min.js';
+import * as THREE from '/vendor/three.min.js';
 import { reduceMotion, finePointer, lerp, clamp } from '/js/main.js';
 
 const canvas = document.getElementById('hero-canvas');

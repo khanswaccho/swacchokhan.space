@@ -9,7 +9,7 @@
    underneath remains visible — that fallback is also what search engines read.
    ========================================================================== */
 
-import * as THREE from '/vendor/three.module.min.js';
+import * as THREE from '/vendor/three.min.js';
 import { reduceMotion, clamp, lerp } from '/js/main.js';
 
 const stage = document.getElementById('book-stage');

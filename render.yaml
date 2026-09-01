@@ -12,8 +12,7 @@ services:
     # Closest Render region to Bangladesh — the site's main audience.
     region: singapore
 
-    # Plain `npm install`, NOT `npm ci --ignore-scripts`: the postinstall step
-    # vendors three.js into public/vendor/, which is git-ignored.
+    # No build step needed: the three.js bundle is committed to the repo.
     buildCommand: npm install
     startCommand: npm start
 
