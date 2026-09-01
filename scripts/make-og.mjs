@@ -41,7 +41,7 @@ const page = `<!doctype html>
 const NAME    = ${JSON.stringify(id.name)};
 const ROLE    = ${JSON.stringify(id.headline)};
 const PLACE   = ${JSON.stringify(id.location)};
-const STUDIO  = ${JSON.stringify('Founder of Websthan · ' + profile.links.websthan.replace(/^https?:\/\//, ''))};
+const STUDIO  = ${JSON.stringify('Co-founder of Websthan · ' + profile.links.websthan.replace(/^https?:\/\//, ''))};
 const INITIAL = ${JSON.stringify(id.initials)};
 
 const W = 1200, H = 630;
@@ -81,9 +81,10 @@ async function paint() {
   for (let i = 0; i < W; i += 48) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i, H); x.stroke(); }
   for (let j = 0; j < H; j += 48) { x.beginPath(); x.moveTo(0, j); x.lineTo(W, j); x.stroke(); }
 
-  // Neural constellation, right side
+  // Neural constellation. Spread across the full width now that the text is
+  // centred, so a square crop still lands on some of it.
   const pts = [];
-  for (let i = 0; i < 26; i++) pts.push({ px: 700 + Math.random() * 460, py: 60 + Math.random() * 510 });
+  for (let i = 0; i < 34; i++) pts.push({ px: 40 + Math.random() * (W - 80), py: 50 + Math.random() * (H - 100) });
   x.strokeStyle = 'rgba(255,255,255,0.09)';
   for (let i = 0; i < pts.length; i++)
     for (let j = i + 1; j < pts.length; j++) {
@@ -97,37 +98,58 @@ async function paint() {
   bar.addColorStop(0, '#22d3ee'); bar.addColorStop(0.5, '#7c5cff'); bar.addColorStop(1, '#ff5ea8');
   x.fillStyle = bar; x.fillRect(0, 0, 10, H);
 
-  // Monogram
-  const M = 78;
-  x.fillStyle = bar; roundRect(x, M, 84, 84, 84, 24); x.fill();
-  x.fillStyle = '#06070e';
-  x.font = '700 38px Sora, sans-serif';
-  x.textAlign = 'center'; x.textBaseline = 'middle';
-  x.fillText(INITIAL, M + 42, 128);
+  // ── Everything below is centred inside the SAFE ZONE ────────────────────
+  // WhatsApp, Telegram, Discord and iMessage crop a link thumbnail to a centre
+  // square. On a 1200x630 card that keeps only x 285-915, so a left-aligned
+  // composition loses its first 200px — the start of the name. Keeping the
+  // content centred and inside 630px wide means the card reads both as a wide
+  // banner (LinkedIn, X, Facebook) and as a square crop.
+  const CX = W / 2;
+  const SAFE = H;                 // 630px — the width of the centre square
+  const fits = (text, px, font) => {
+    let size = px;
+    while (size > 12) {
+      x.font = font.replace('{s}', size);
+      if (x.measureText(text).width <= SAFE - 40) break;
+      size -= 2;
+    }
+    return size;
+  };
 
-  // Text block
-  x.textAlign = 'left'; x.textBaseline = 'alphabetic';
+  x.textAlign = 'center';
+
+  // Monogram
+  x.textBaseline = 'middle';
+  x.fillStyle = bar; roundRect(x, CX - 38, 96, 76, 76, 22); x.fill();
+  x.fillStyle = '#06070e';
+  x.font = '700 34px Sora, sans-serif';
+  x.fillText(INITIAL, CX, 135);
+
+  x.textBaseline = 'alphabetic';
 
   x.fillStyle = '#5fdcf0';
-  x.font = '500 22px "JetBrains Mono", monospace';
+  x.font = '500 21px "JetBrains Mono", monospace';
   x.letterSpacing = '7px';
-  x.fillText(PLACE.toUpperCase(), M, 258);
+  x.fillText(PLACE.toUpperCase(), CX + 4, 248);
   x.letterSpacing = '0px';
 
   x.fillStyle = '#f4f6fd';
-  x.font = '700 96px Sora, sans-serif';
-  x.fillText(NAME, M - 4, 366);
+  const nameSize = fits(NAME, 76, '700 {s}px Sora, sans-serif');
+  x.font = '700 ' + nameSize + 'px Sora, sans-serif';
+  x.fillText(NAME, CX, 340);
 
   x.fillStyle = '#b7bfd6';
-  x.font = '400 36px Sora, sans-serif';
-  x.fillText(ROLE, M, 428);
+  const roleSize = fits(ROLE, 31, '400 {s}px Sora, sans-serif');
+  x.font = '400 ' + roleSize + 'px Sora, sans-serif';
+  x.fillText(ROLE, CX, 396);
 
   x.strokeStyle = 'rgba(255,255,255,0.18)'; x.lineWidth = 1.5;
-  x.beginPath(); x.moveTo(M, 478); x.lineTo(M + 200, 478); x.stroke();
+  x.beginPath(); x.moveTo(CX - 90, 442); x.lineTo(CX + 90, 442); x.stroke();
 
   x.fillStyle = '#7b849d';
-  x.font = '400 26px "JetBrains Mono", monospace';
-  x.fillText(STUDIO, M, 528);
+  const studioSize = fits(STUDIO, 23, '400 {s}px "JetBrains Mono", monospace');
+  x.font = '400 ' + studioSize + 'px "JetBrains Mono", monospace';
+  x.fillText(STUDIO, CX, 494);
 
   const blob = await new Promise(res => c.toBlob(res, 'image/jpeg', 0.92));
   const buf = await blob.arrayBuffer();
