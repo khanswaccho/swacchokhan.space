@@ -25,6 +25,11 @@
 <meta property="og:description" content="<%= description %>">
 <meta property="og:url" content="<%= canonical %>">
 <meta property="og:image" content="<%= origin %>/img/og.jpg">
+<%# Declared dimensions let LinkedIn and Facebook lay the card out on first
+    scrape instead of showing a bare link until they fetch the image. %>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:alt" content="<%= profile.identity.name %> — <%= profile.identity.headline %>">
 <meta property="og:locale" content="<%= profile.seo.locale %>">
 <meta property="og:locale:alternate" content="bn_BD">
@@ -32,13 +37,18 @@
 <meta name="twitter:title" content="<%= title %>">
 <meta name="twitter:description" content="<%= description %>">
 <meta name="twitter:image" content="<%= origin %>/img/og.jpg">
+<meta name="twitter:image:alt" content="<%= profile.identity.name %> — <%= profile.identity.headline %>">
 
 <%# CSRF: read by public/js/contact.js for the fetch header %>
 <meta name="csrf-token" content="<%= csrfToken %>">
 <meta name="csrf-header" content="<%= csrfHeader %>">
 
+<%# iOS ignores SVG for apple-touch-icon and Android's manifest wants fixed PNG
+    sizes, so "add to home screen" needs the rasters. npm run icons rebuilds them. %>
 <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/img/favicon.svg">
+<link rel="icon" href="/img/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -153,8 +163,25 @@
       description: description,
       inLanguage: 'en-BD',
       isPartOf: { '@id': origin + '/#website' },
-      about: { '@id': origin + '/#person' }
-    }
+      about: { '@id': origin + '/#person' },
+      ...(page && page !== 'home' ? { breadcrumb: { '@id': canonical + '#breadcrumb' } } : {})
+    },
+    /* Lets Google show "swacchokhan.space › Journey" instead of a bare URL. */
+    ...(page && page !== 'home'
+      ? [{
+          '@type': 'BreadcrumbList',
+          '@id': canonical + '#breadcrumb',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: origin + '/' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: (nav.find(function (n) { return n.key === page; }) || {}).label || page,
+              item: canonical
+            }
+          ]
+        }]
+      : [])
   ]
 }) %>
 </script>

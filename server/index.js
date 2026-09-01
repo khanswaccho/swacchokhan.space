@@ -89,6 +89,12 @@ app.use(csrfVerify);
 app.use('/api', apiRoutes);
 app.use(noStoreHtml, pageRoutes);
 
+app.get('/site.webmanifest', (req, res) => {
+  res.type('application/manifest+json');
+  res.set('Cache-Control', 'public, max-age=86400');
+  res.render('partials/manifest', { profile });
+});
+
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain').send(
     [

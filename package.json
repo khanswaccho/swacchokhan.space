@@ -13,7 +13,8 @@
     "dev": "node --watch server/index.js",
     "og": "node scripts/make-og.mjs",
     "build:three": "node scripts/build-three.mjs",
-    "check:three": "node scripts/check-three.mjs"
+    "check:three": "node scripts/check-three.mjs",
+    "icons": "node scripts/make-icons.mjs"
   },
   "dependencies": {
     "compression": "^1.7.4",
