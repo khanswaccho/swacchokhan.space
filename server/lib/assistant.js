@@ -78,9 +78,9 @@ function intents() {
         'can i hire', 'hire him', 'work with him', 'freelance work', 'take on projects',
         'is he free', 'accepting clients', 'how much does he charge', 'what does he charge',
       ],
-      keywords: ['available', 'availability', 'hire', 'hiring', 'freelance', 'job', 'opportunity', 'rate', 'price', 'cost', 'quote', 'budget'],
+      keywords: ['available', 'availability', 'hire', 'hiring', 'freelance', 'internship', 'internships', 'job', 'opportunity', 'rate', 'price', 'cost', 'quote', 'budget'],
       answer: () =>
-        `Yes — ${id.availability.toLowerCase()}. He's most interested in anything with AI, machine learning or the web in it. Pricing depends entirely on scope, so the honest answer is to send him the details and ask.`,
+        `He's ${id.availability.toLowerCase()}. He's most interested in anything with AI, machine learning or the web in it. Pricing depends entirely on scope, so the honest answer is to send him the details and ask.`,
       links: () => [contactLink, mailLink],
       suggestions: ['What does he do?', 'What is Websthan?', 'How do I contact him?'],
     },
@@ -128,7 +128,7 @@ function intents() {
       ],
       keywords: ['websthan', 'studio', 'agency', 'company', 'business', 'marketing', 'seo', 'design'],
       answer: () =>
-        `Websthan is the web design and digital marketing agency he founded, based in ${id.location}. ` +
+        `Websthan is the web design and digital marketing agency he co-founded, based in ${id.location}. ` +
         `He leads the tech team, sets the business strategy and handles clients directly — and still builds on the front end. ` +
         `It's at ${links.websthan}. If you need a site built or rescued, that's the door to knock on.`,
       links: () => [{ label: 'websthan.online', href: links.websthan }, contactLink],
