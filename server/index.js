@@ -95,6 +95,13 @@ app.get('/site.webmanifest', (req, res) => {
   res.render('partials/manifest', { profile });
 });
 
+// AI search and answer engines are named explicitly: several of them treat a
+// bare `User-agent: *` as ambiguous, and being cited by them is the point.
+const AI_CRAWLERS = [
+  'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
+  'PerplexityBot', 'Google-Extended', 'Applebot-Extended', 'Bingbot', 'CCBot',
+];
+
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain').send(
     [
@@ -102,7 +109,54 @@ app.get('/robots.txt', (req, res) => {
       'Allow: /',
       'Disallow: /api/',
       '',
+      ...AI_CRAWLERS.flatMap((bot) => [`User-agent: ${bot}`, 'Allow: /', 'Disallow: /api/', '']),
       `Sitemap: ${res.locals.origin}/sitemap.xml`,
+      '',
+    ].join('\n')
+  );
+});
+
+// llms.txt — a plain-text summary for LLM crawlers and answer engines
+// (https://llmstxt.org). Built from data/profile.json so it never drifts.
+app.get('/llms.txt', (req, res) => {
+  const o = res.locals.origin;
+  const id = profile.identity;
+  const L = profile.links;
+  const current = profile.timeline.filter((t) => t.current);
+  res.set('Cache-Control', 'public, max-age=86400');
+  res.type('text/plain').send(
+    [
+      `# ${id.name}`,
+      '',
+      `> ${id.name} (${id.legalName}) is an AI programmer and web developer based in ${id.location}. ` +
+        `He is a Computer Science & Engineering undergraduate focused on artificial intelligence and machine learning, ` +
+        `and the co-founder and tech lead of Websthan, a web design and digital marketing agency in Dhaka.`,
+      '',
+      `- Location: ${id.location} (serves ${id.serviceArea})`,
+      `- Availability: ${id.availability}`,
+      `- Email: ${id.email}`,
+      `- Languages: ${id.languages.join(', ')}`,
+      '',
+      '## Currently',
+      '',
+      ...current.map((t) => `- ${t.title} — ${t.org} (${t.period})`),
+      '',
+      '## Focus areas (in his own words)',
+      '',
+      ...profile.focus.map((f) => `- ${f.title}: ${f.summary}`),
+      '',
+      '## Pages',
+      '',
+      `- [Home](${o}/): overview, focus areas, skills and hobbies`,
+      `- [Journey](${o}/journey): his story from Sirajganj to Dhaka, chapter by chapter, plus a full timeline`,
+      `- [Portfolio](${o}/portfolio): Websthan and his public GitHub repositories`,
+      `- [Contact](${o}/contact): contact form and email`,
+      '',
+      '## Elsewhere',
+      '',
+      `- [Websthan](${L.websthan})`,
+      `- [GitHub](${L.github})`,
+      `- [LinkedIn](${L.linkedin})`,
       '',
     ].join('\n')
   );

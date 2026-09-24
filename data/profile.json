@@ -24,7 +24,7 @@
       "lon": "90.4125"
     },
     "serviceArea": "Bangladesh · remote worldwide",
-    "availability": "Open to internships, freelance builds & collaboration",
+    "availability": "Available for freelance builds & collaboration",
     "email": "khanswaccho@gmail.com",
     "languages": [
       "Bengali (native)",
@@ -35,7 +35,6 @@
   "links": {
     "github": "https://github.com/khanswaccho",
     "linkedin": "https://www.linkedin.com/in/swaccho/",
-    "medium": "https://medium.com/@khanswaccho",
     "youtube": "https://www.youtube.com/@swacchokhan",
     "websthan": "https://websthan.online",
     "videoPortfolio": "https://drive.google.com/drive/folders/1eRemna0D3tXGNM-4Yfr1MR4NoktwYIxu?usp=drive_link"
@@ -210,10 +209,6 @@
           "level": "exploring"
         },
         {
-          "name": "Writing",
-          "level": "building"
-        },
-        {
           "name": "Video editing",
           "level": "past"
         }
@@ -301,21 +296,6 @@
     },
     {
       "numeral": "Chapter V",
-      "era": "2024 — now",
-      "title": "Words on the Page",
-      "subtitle": "Medium · a few articles, and counting",
-      "body": [
-        "Reading eventually turned into writing. I've published a handful of articles on Medium so far — I'm a beginner at this and I'd rather say so than pretend otherwise.",
-        "But it's already the sharpest thinking tool I own. If I can't write an idea down clearly, I've found I don't understand it yet. That test has saved me more times in code than it has in prose."
-      ],
-      "tags": [
-        "medium",
-        "beginner writer",
-        "critical thinking"
-      ]
-    },
-    {
-      "numeral": "Chapter VI",
       "era": "2025 — now",
       "title": "Websthan",
       "subtitle": "websthan.online · an agency in Dhaka",
@@ -331,7 +311,7 @@
       ]
     },
     {
-      "numeral": "Chapter VII",
+      "numeral": "Chapter VI",
       "era": "2026 — now",
       "title": "Machines That Learn",
       "subtitle": "BSc Computer Science & Engineering, UCSI University — Bangladesh campus",
@@ -352,12 +332,12 @@
       "title": "The Next Page",
       "subtitle": "Still being written",
       "body": [
-        "Every chapter here was a skill I picked up because I was curious, and every one of them fed the next. Editing taught me patience, YouTube taught me to communicate, business taught me to measure, teaching taught me to explain, writing taught me to think.",
+        "Every chapter here was a skill I picked up because I was curious, and every one of them fed the next. Editing taught me patience, YouTube taught me to communicate, business taught me to measure, teaching taught me to explain.",
         "All of it now points at code. I want to build AI systems that are genuinely useful, keep Websthan growing, and keep leaving a trail of things I made. If you have something worth building, the last chapter of this book is a contact form."
       ],
       "tags": [
-        "open to work",
         "collaboration",
+        "freelance",
         "building"
       ],
       "isFinal": true
@@ -497,13 +477,6 @@
       "detail": "The oldest habit I have. Fiction, non-fiction, whatever rearranges how I see a thing."
     },
     {
-      "name": "Writing",
-      "icon": "pen",
-      "detail": "Still new at it — a few articles on Medium so far. It's how I find out whether I actually understand something.",
-      "link": "https://medium.com/@khanswaccho",
-      "linkLabel": "Read on Medium"
-    },
-    {
       "name": "Chess",
       "icon": "chess",
       "detail": "Slow, quiet, and the only game where I can feel myself getting better at thinking."
@@ -530,10 +503,6 @@
       ]
     }
   ],
-  "writing": {
-    "note": "I'm new to writing publicly — a few articles on Medium so far, on technology, learning, and whatever I've been thinking about too hard. More on the way.",
-    "profile": "https://medium.com/@khanswaccho"
-  },
   "seo": {
     "siteName": "Swaccho Khan",
     "description": "Swaccho Khan — AI programmer and web developer in Dhaka, Bangladesh. Computer Science undergraduate focused on artificial intelligence and machine learning, and co-founder of Websthan, a web design and digital marketing agency.",
@@ -550,7 +519,7 @@
     ]
   },
   "book": {
-    "coverEyebrow": "A LIFE IN NINE CHAPTERS",
+    "coverEyebrow": "A LIFE IN EIGHT CHAPTERS",
     "coverLines": [
       "AI programmer · Web developer",
       "Co-founder of Websthan · Dhaka"

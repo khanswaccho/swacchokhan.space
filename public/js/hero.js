@@ -6,8 +6,12 @@
    can push around. Degrades to nothing (no error, no gap) without WebGL.
    ========================================================================== */
 
-import * as THREE from '/vendor/three.min.js';
 import { reduceMotion, finePointer, lerp, clamp } from '/js/main.js';
+
+// three.js is the heaviest file on the site (~120 KB gzipped), so it is only
+// fetched when the field will actually be drawn: not with Save-Data on, and
+// not on phone-width screens, where the hero copy covers most of it anyway.
+let THREE;
 
 const canvas = document.getElementById('hero-canvas');
 const trailCanvas = document.getElementById('trail-canvas');
@@ -146,8 +150,18 @@ function initTrail() {
 }
 
 /* ========================================================== neural field == */
-function initField() {
+async function initField() {
   if (!canvas || !hero) return;
+  if (navigator.connection?.saveData) return;
+  if (window.matchMedia('(max-width: 720px)').matches) return;
+
+  // Let the page finish painting before pulling in the 3D library.
+  await new Promise((r) => ('requestIdleCallback' in window ? requestIdleCallback(r, { timeout: 1500 }) : setTimeout(r, 300)));
+  try {
+    THREE = await import('/vendor/three.min.js');
+  } catch {
+    return;
+  }
 
   let renderer;
   try {

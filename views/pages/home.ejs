@@ -62,9 +62,6 @@
             <a class="social" href="<%= profile.links.linkedin %>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-cursor="hover">
               <svg aria-hidden="true"><use href="#i-linkedin"></use></svg>
             </a>
-            <a class="social" href="<%= profile.links.medium %>" target="_blank" rel="noopener noreferrer" aria-label="Medium" data-cursor="hover">
-              <svg aria-hidden="true"><use href="#i-medium"></use></svg>
-            </a>
             <a class="social" href="<%= profile.links.youtube %>" target="_blank" rel="noopener noreferrer" aria-label="YouTube" data-cursor="hover">
               <svg aria-hidden="true"><use href="#i-youtube"></use></svg>
             </a>
@@ -96,7 +93,7 @@
               <span class="hero__portrait-fallback" id="portrait-fallback" aria-hidden="true" data-initials="<%= profile.identity.initials %>"></span>
               <img
                 id="portrait"
-                src="/img/swaccho.jpg"
+                src="<%= portraitSrc || '/img/swaccho.jpg' %>"
                 alt="Portrait of <%= profile.identity.name %>"
                 width="600" height="600"
                 loading="eager"
@@ -130,7 +127,7 @@
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
         <% for (let pass = 0; pass < 2; pass++) { %>
-          <% ['Python', 'Machine Learning', 'Neural Networks', 'JavaScript', 'C', 'Node.js', 'Web Design', 'SEO', 'Three.js', 'Cybersecurity', 'Technical Writing', 'Websthan'].forEach(function (word) { %>
+          <% ['Python', 'Machine Learning', 'Neural Networks', 'JavaScript', 'C', 'Node.js', 'Web Design', 'SEO', 'Three.js', 'Cybersecurity', 'Websthan'].forEach(function (word) { %>
             <span class="marquee__item"><%= word %></span>
           <% }); %>
         <% } %>
@@ -247,10 +244,10 @@
         <div class="glass feature" data-reveal="scale">
           <div>
             <span class="eyebrow">My journey</span>
-            <h2 style="margin-top:0.9rem">A life in <em>nine chapters</em></h2>
+            <h2 style="margin-top:0.9rem">A life in <em>eight chapters</em></h2>
             <p class="lede" style="margin-top:1.15rem">
               A first computer. Video editing, then YouTube. The school years. A move
-              abroad and back. A small e-commerce. A few articles. Websthan.
+              abroad and back. A small e-commerce. Websthan.
               And now, machine learning.
             </p>
             <p style="margin-top:1rem;color:var(--text-3);font-size:0.9rem">
@@ -325,7 +322,7 @@
           <span class="eyebrow eyebrow--plain" style="justify-content:center">Say hello</span>
           <h2 style="margin-top:1rem">Got something worth building?</h2>
           <p class="lede">
-            I'm open to internships, freelance work and collaborations — especially anything
+            I'm available for freelance builds and collaborations — especially anything
             with AI, machine learning or the web in it.
           </p>
           <div class="btn-row">
