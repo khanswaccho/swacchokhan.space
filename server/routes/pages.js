@@ -1,9 +1,18 @@
+import { existsSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Router } from 'express';
 import { getRepos } from '../lib/github.js';
 import profile from '../lib/profile.js';
 import { NAV } from '../lib/nav.js';
 
 const router = Router();
+
+// Checked once at boot: without a local portrait, pointing the <img> straight at
+// the GitHub avatar saves every home visit a guaranteed 404 round-trip.
+const HAS_LOCAL_PORTRAIT = existsSync(
+  resolve(dirname(fileURLToPath(import.meta.url)), '../../public/img/swaccho.jpg')
+);
 
 function base(page, extra = {}) {
   return {
@@ -27,7 +36,8 @@ router.get('/', async (req, res, next) => {
       base('home', {
         title: `${profile.identity.name} — ${profile.identity.headline}`,
         description: profile.seo.description,
-        avatarFallback: avatar,
+        portraitSrc: HAS_LOCAL_PORTRAIT ? '/img/swaccho.jpg' : avatar,
+        avatarFallback: HAS_LOCAL_PORTRAIT ? avatar : null,
       })
     );
   } catch (err) {
@@ -54,7 +64,7 @@ router.get('/portfolio', async (req, res, next) => {
       base('portfolio', {
         title: `Portfolio — ${profile.identity.name}`,
         description:
-          'Open-source repositories, Websthan client work, written articles and the archived video editing portfolio of Swaccho Khan.',
+          'Open-source repositories, Websthan client work and the archived video editing portfolio of Swaccho Khan.',
         github,
       })
     );
@@ -68,7 +78,7 @@ router.get('/contact', (req, res) => {
     'pages/contact',
     base('contact', {
       title: `Contact — ${profile.identity.name}`,
-      description: `Get in touch with Swaccho Khan — ${profile.identity.email}. Available for internships, freelance builds and collaboration.`,
+      description: `Get in touch with Swaccho Khan — ${profile.identity.email}. Available for freelance builds, Websthan projects and collaboration.`,
       form: { values: {}, errors: {}, status: null },
     })
   );

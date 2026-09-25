@@ -78,9 +78,9 @@ function intents() {
         'can i hire', 'hire him', 'work with him', 'freelance work', 'take on projects',
         'is he free', 'accepting clients', 'how much does he charge', 'what does he charge',
       ],
-      keywords: ['available', 'availability', 'hire', 'hiring', 'freelance', 'internship', 'job', 'opportunity', 'rate', 'price', 'cost', 'quote', 'budget'],
+      keywords: ['available', 'availability', 'hire', 'hiring', 'freelance', 'internship', 'internships', 'job', 'opportunity', 'rate', 'price', 'cost', 'quote', 'budget'],
       answer: () =>
-        `Yes — ${id.availability.toLowerCase()}. He's most interested in anything with AI, machine learning or the web in it. Pricing depends entirely on scope, so the honest answer is to send him the details and ask.`,
+        `He's ${id.availability.toLowerCase()}. He's most interested in anything with AI, machine learning or the web in it. Pricing depends entirely on scope, so the honest answer is to send him the details and ask.`,
       links: () => [contactLink, mailLink],
       suggestions: ['What does he do?', 'What is Websthan?', 'How do I contact him?'],
     },
@@ -128,7 +128,7 @@ function intents() {
       ],
       keywords: ['websthan', 'studio', 'agency', 'company', 'business', 'marketing', 'seo', 'design'],
       answer: () =>
-        `Websthan is the web design and digital marketing agency he founded, based in ${id.location}. ` +
+        `Websthan is the web design and digital marketing agency he co-founded, based in ${id.location}. ` +
         `He leads the tech team, sets the business strategy and handles clients directly — and still builds on the front end. ` +
         `It's at ${links.websthan}. If you need a site built or rescued, that's the door to knock on.`,
       links: () => [{ label: 'websthan.online', href: links.websthan }, contactLink],
@@ -216,17 +216,6 @@ function intents() {
     },
 
     {
-      id: 'writing',
-      phrases: ['his writing', 'his articles', 'his blog', 'does he write', 'medium profile', 'his essays'],
-      keywords: ['writing', 'write', 'writer', 'article', 'articles', 'blog', 'medium', 'essay', 'essays'],
-      answer: () =>
-        `He's new to writing publicly — a few articles on Medium so far, on technology and learning. ` +
-        `He'd rather call himself a beginner at it than oversell. They're at ${links.medium}.`,
-      links: () => [{ label: 'Medium', href: links.medium }],
-      suggestions: ['What are his hobbies?', 'What does he do?'],
-    },
-
-    {
       id: 'video',
       phrases: [
         'video editing', 'his youtube', 'youtube channel', 'does he edit videos',
@@ -248,7 +237,7 @@ function intents() {
       keywords: ['hobby', 'hobbies', 'fun', 'interests', 'chess', 'reading', 'books', 'photography', 'sports', 'basketball'],
       answer: () => `${p.hobbies.map((h) => h.name).join(', ')}. Most of them fed into the work eventually.`,
       links: () => [{ label: 'Hobbies', href: '/#hobbies' }],
-      suggestions: ['Does he write?', 'What does he do?'],
+      suggestions: ['What is Websthan?', 'What does he do?'],
     },
 
     {

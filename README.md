@@ -34,7 +34,7 @@ Then open <http://localhost:3000>. `npm start` runs it without the file watcher.
 |---|---|
 | `/` | Hero with a WebGL neural field, a cursor glow + trail, the positioning statement, the two focus areas (AI/ML and Websthan), skills, hobbies |
 | `/journey` | **The book** — a real 3D book you can turn, one spread per chapter, with the same chapters written out below it. Plus the academic / work / volunteering timeline |
-| `/portfolio` | Websthan, live GitHub repositories, Medium writing, and the archived video-editing portfolio |
+| `/portfolio` | Websthan, live GitHub repositories, and the archived video-editing portfolio |
 | `/contact` | CSRF-protected contact form, direct email, and every social link |
 
 A **site assistant** floats on every page — a scripted chatbot answering contact,
@@ -54,7 +54,7 @@ and refresh — in development the file is re-read on every request, so there's 
 build step and no restart.
 
 That one file holds the identity and positioning copy, the location and geo data,
-the social links, the four focus areas, the skill groups, the nine book chapters,
+the social links, the four focus areas, the skill groups, the eight book chapters,
 the timeline, the hobbies and the assistant's greeting. Adding a chapter to
 `chapters` adds a spread to the 3D book *and* a card to the written reader
 underneath it, automatically.
